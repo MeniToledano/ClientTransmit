@@ -1,0 +1,28 @@
+<div class="item">
+  <h5 class="requestTitle">Need to move {{item}} from {{from}} to {{to}}</h5>
+<div>
+  <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right; display: inline-block">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" class="menu">
+    <button mat-menu-item>
+      <span>Delete</span>
+    </button>
+    <button mat-menu-item [disabled]="status === 'RESOLVED'" (click)="status='RESOLVED'">
+      <span>Mark as resolved</span>
+    </button>
+    <button *ngIf="status === 'RESOLVED'" mat-menu-item (click)="status='PENDING'">
+      <span>Pending</span>
+    </button>
+  </mat-menu>
+
+  <mat-chip class="statusButton">{{status}}</mat-chip>
+</div>
+  <br><br>
+  <p class="content">{{msg}}</p>
+  <mat-chip-list aria-label="Fish selection">
+    <mat-chip>{{from}}</mat-chip>
+    <span>&#8594;</span>
+    <mat-chip>{{to}}</mat-chip>
+  </mat-chip-list>
+</div>

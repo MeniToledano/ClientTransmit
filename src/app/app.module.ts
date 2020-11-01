@@ -12,6 +12,8 @@ import {MaterialModule} from './material.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import { RegistrationComponent } from './registration/registration.component';
 import { MyRequestsComponent } from './my-requests/my-requests.component';
+import { MyRoutesComponent } from './my-routes/my-routes.component';
+import { RequestComponent } from './my-requests/request/request.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { MyRequestsComponent } from './my-requests/my-requests.component';
     LoginComponent,
     HeaderComponent,
     RegistrationComponent,
-    MyRequestsComponent
+    MyRequestsComponent,
+    MyRoutesComponent,
+    RequestComponent
   ],
   imports: [
     BrowserModule,

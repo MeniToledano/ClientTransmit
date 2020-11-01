@@ -1,0 +1,21 @@
+.basic-container{
+  margin: auto;
+  width: 50%;
+  border: none;
+  padding: 10px;
+}
+
+.addNewReq{
+  display: inline-block;
+  float: right;
+  margin-right: 100px;
+}
+.label{
+  display: inline-block;
+  float: left;
+  margin-left: 270px;
+}
+.body{
+  max-width: 700px;
+  margin: auto;
+}

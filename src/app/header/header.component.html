@@ -1,0 +1,29 @@
+
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>onTheGo</span>
+    <span class="example-spacer"></span>
+    <button *ngIf="isUserLogged"
+            style="position: absolute;
+            left: 160px" class="mat-button"
+            (click)="onChoosingPage('myRequests')"
+            [ngClass]="{chosen:chosenPage=='myRequests'}"
+    >My Requests</button>
+    <button *ngIf="isUserLogged"
+            style="position: absolute;
+            left: 260px" class="mat-button"
+            (click)="onChoosingPage('myRoutes')"
+            [ngClass]="{chosen:chosenPage=='myRoutes'}"
+    >My Routes</button>
+    <button *ngIf="isUserLogged" class="mat-button">Hi {{userName}}!</button>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+</p>
