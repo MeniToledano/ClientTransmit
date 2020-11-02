@@ -1,10 +1,15 @@
 
-<p class="label">My Requests:</p>
-<button mat-raised-button color="primary" class="addNewReq" >add new request</button>
-<br><br>
 <div class="body">
+  <div>
+  <p class="label">My Requests:</p>
+  <button mat-raised-button color="primary" class="addNewReq" (click)="openDialog()">add new request</button>
+  </div>
+  <br><br>
 <div *ngFor="let request of requests">
-<app-request></app-request>
+<app-request [to]="request.to"
+[from]="request.from"
+[item]="request.item"
+[msg]="request.msg"></app-request>
   <br>
 </div>
 </div>

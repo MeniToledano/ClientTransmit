@@ -16,7 +16,7 @@
     </button>
   </mat-menu>
 
-  <mat-chip class="statusButton">{{status}}</mat-chip>
+  <mat-chip [ngClass]="{resolved:status=='RESOLVED'}" class="statusButton">{{status}}</mat-chip>
 </div>
   <br><br>
   <p class="content">{{msg}}</p>

@@ -9,11 +9,13 @@ import {_MatMenuDirectivesModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MaterialModule} from './material.module';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RegistrationComponent } from './registration/registration.component';
 import { MyRequestsComponent } from './my-requests/my-requests.component';
 import { MyRoutesComponent } from './my-routes/my-routes.component';
-import { RequestComponent } from './my-requests/request/request.component';
+import {RequestComponent} from './my-requests/request/request.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { NewRequestDialogComponent } from './my-requests/new-request-dialog/new-request-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { RequestComponent } from './my-requests/request/request.component';
     RegistrationComponent,
     MyRequestsComponent,
     MyRoutesComponent,
-    RequestComponent
+    RequestComponent,
+    NewRequestDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,9 @@ import { RequestComponent } from './my-requests/request/request.component';
     MatToolbarModule,
     MatIconModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

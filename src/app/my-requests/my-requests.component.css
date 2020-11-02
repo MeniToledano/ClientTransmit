@@ -8,12 +8,11 @@
 .addNewReq{
   display: inline-block;
   float: right;
-  margin-right: 100px;
 }
 .label{
   display: inline-block;
   float: left;
-  margin-left: 270px;
+  margin-top: 10px;
 }
 .body{
   max-width: 700px;
