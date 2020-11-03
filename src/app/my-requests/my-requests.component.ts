@@ -11,9 +11,9 @@ import {NewRequestDialogComponent} from './new-request-dialog/new-request-dialog
 })
 export class MyRequestsComponent implements OnInit {
    requests: Request[] = [new Request( 'I need to move a fridge form a to b',  'Ashdod',  'TLV',  'I need to move the fridge,' +
-       ' its located at 3rd floor and needs to be moved to tel aviv at first floor. There’s an elevator, but it wont fit.'),
+       ' its located at 3rd floor and needs to be moved to tel aviv at first floor. There’s an elevator, but it wont fit.','PENDING'),
      new Request( 'need to move microwave from c to d ',  'Ramat-Gan',  'Eilat',  'I need to move the fridge,' +
-         ' its located at 3rd floor and needs to be moved to tel aviv at first floor. There’s an elevator, but it wont fit.')];
+         ' its located at 3rd floor and needs to be moved to tel aviv at first floor. There’s an elevator, but it wont fit.', 'PENDING')];
    constructor(public dialog: MatDialog) {
    }
   ngOnInit(): void {}

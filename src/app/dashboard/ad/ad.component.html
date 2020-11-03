@@ -1,0 +1,16 @@
+<div class="item">
+  <h5 class="requestTitle">{{request.title}}</h5>
+
+  <p class="custom-arrow"><i matTooltip="Click to contact this user" class="arrow right"></i></p>
+  <mat-chip [ngClass]="{resolved:status ==='RESOLVED'}" class="statusButton">{{status}}</mat-chip>
+
+  <br>
+  <h5 style="float: left">By {{userName}} {{userLastName}} at    {{date}}    {{time}}</h5>
+  <br><br>
+  <p class="content">{{request.msg}}</p>
+  <mat-chip-list>
+    <mat-chip>{{request.from}}</mat-chip>
+    <span>&#8594;</span>
+    <mat-chip>{{request.to}}</mat-chip>
+  </mat-chip-list>
+</div>

@@ -2,7 +2,11 @@ export class Request {
   constructor(private titleField: string,
               private fromField: string,
               private toField: string,
-              private msgField: string) {  }
+              private msgField: string,
+              private statusField: string) {  }
+  get status(): string {
+    return this.statusField;
+  }
   get title(): string {
     return this.titleField;
   }

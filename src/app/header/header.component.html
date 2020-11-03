@@ -4,7 +4,7 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>onTheGo</span>
+    <span (click)="onClickSpan()" id="span">OnTheGo</span>
     <span class="example-spacer"></span>
     <button *ngIf="isUserLogged"
             style="position: absolute;

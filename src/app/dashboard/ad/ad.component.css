@@ -1,0 +1,48 @@
+.item{
+  border: 2px solid gray;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  padding: 10px
+}
+.requestTitle{
+  margin-top: 5px;
+  margin-bottom: 0;
+  width: 450px;
+  float: left;
+  font-size: 15px;
+}
+.content{
+  max-width: 400px;
+  font-size: 10px;
+}
+
+.statusButton{
+  background-color: lightsalmon;
+  display: inline-block;
+  float: right;
+  margin-top: 5px;
+  min-width: 100px;
+  text-align: center;
+}
+.resolved{
+  background-color: lightgreen;
+}
+
+.arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+.custom-arrow{
+  float: right;
+  display: inline-block;
+  margin: 10px;
+}
+.custom-arrow:hover{
+  cursor: pointer;
+}
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}

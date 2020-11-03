@@ -6,12 +6,13 @@
   </div>
   <br><br>
 <div *ngFor="let request of requests; let i = index">
-<app-request [to]="request.to"
-[from]="request.from"
-[title]="request.title"
-[msg]="request.msg"
-[index] = i
-(delete) = "onClickDelete($event)"></app-request>
+<app-request (delete)="onClickDelete($event)"
+             [from]="request.from"
+             [index]=i
+             [msg]="request.msg"
+             [status]="request.status"
+             [title]="request.title"
+             [to]="request.to"></app-request>
   <br>
 </div>
 </div>

@@ -1,0 +1,16 @@
+
+<div class="body">
+  <div>
+    <p class="label">Dashboard:</p>
+  </div>
+  <div *ngFor="let ad of ads; let i = index">
+    <app-ad [request]="ad.request"
+            [status]="ad.request.status"
+            [userName]="ad.userName"
+    [userLastName]="ad.userLastName"
+    [time]="ad.adLastModifiedTime"
+    [date]="ad.adLastModifiedDate"
+    ></app-ad>
+    <br>
+  </div>
+</div>

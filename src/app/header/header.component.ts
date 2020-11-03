@@ -9,10 +9,8 @@ export class HeaderComponent implements OnInit {
   @Input() isUserLogged: boolean;
   @Input() userName: string;
   @Output() page: EventEmitter<number> = new EventEmitter<number>();
-  chosenPage = 'myRequests';
-  constructor() {
-    this.chosenPage = 'myRequests';
-  }
+  chosenPage = '';
+  constructor() {  }
 
   ngOnInit(): void {
   }
@@ -23,6 +21,13 @@ export class HeaderComponent implements OnInit {
       this.page.emit(3);
     }else{
       this.page.emit(4);
+    }
+  }
+
+  onClickSpan(): void {
+    this.chosenPage = '';
+    if (this.isUserLogged){
+      this.page.emit(0);
     }
   }
 }

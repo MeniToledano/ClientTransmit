@@ -13,7 +13,7 @@ export class AppComponent {
 
   onLogIn(userName: string): void {
     this.userName = userName;
-    this.pageNumber = 3;
+    this.pageNumber = 0;
     this.userLoggedIn = true;
   }
 }
