@@ -1,10 +1,10 @@
 export class Request {
-  constructor(private itemField: string,
+  constructor(private titleField: string,
               private fromField: string,
               private toField: string,
               private msgField: string) {  }
-  get item(): string {
-    return this.itemField;
+  get title(): string {
+    return this.titleField;
   }
 
   get from(): string {

@@ -8,7 +8,7 @@ import {MatDialogRef} from '@angular/material/dialog';
 })
 export class RequestComponent implements OnInit{
 
-  @Input() item = 'fridge ';
+  @Input() title = 'i need to move a fridge from a to b ';
   @Input() from = 'Ashdod';
   @Input() to = 'TLV';
   @Input() status = 'PENDING';

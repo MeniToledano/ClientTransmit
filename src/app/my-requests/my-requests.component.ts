@@ -10,9 +10,9 @@ import {NewRequestDialogComponent} from './new-request-dialog/new-request-dialog
   styleUrls: ['./my-requests.component.css']
 })
 export class MyRequestsComponent implements OnInit {
-   requests: Request[] = [new Request( 'fridge',  'Ashdod',  'TLV',  'I need to move the fridge,' +
+   requests: Request[] = [new Request( 'I need to move a fridge form a to b',  'Ashdod',  'TLV',  'I need to move the fridge,' +
        ' its located at 3rd floor and needs to be moved to tel aviv at first floor. There’s an elevator, but it wont fit.'),
-     new Request( 'Soup',  'Ramat-Gan',  'Eilat',  'I need to move the fridge,' +
+     new Request( 'need to move microwave from c to d ',  'Ramat-Gan',  'Eilat',  'I need to move the fridge,' +
          ' its located at 3rd floor and needs to be moved to tel aviv at first floor. There’s an elevator, but it wont fit.')];
    constructor(public dialog: MatDialog) {
    }
