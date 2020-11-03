@@ -1,24 +1,10 @@
-<h2 mat-dialog-title class="mat-card-title">Add new Request</h2>
+<h2 mat-dialog-title class="mat-card-title">Add new Route</h2>
 
 <mat-dialog-content>
 
-  <div *ngIf="!titleSelected" class="selected"> this field is required</div>
-  <mat-form-field appearance="legacy" style="min-width: 300px" >
-      <mat-label>Enter ad title</mat-label>
-      <input matInput placeholder="Enter ad title" [(ngModel)]="selectTitle" #ITEM [maxLength]="50" >
-    </mat-form-field>
-  <br>
-
-  <div *ngIf="!msgSelected" class="selected"> this field is required</div>
-  <mat-form-field appearance="legacy" style="min-width: 300px"  >
-      <mat-label>Write your Message:</mat-label>
-      <input matInput placeholder = 'Write your Message:' [(ngModel)]="selectMsg"  #MSG [maxLength]="50" >
-    </mat-form-field>
-
-  <h4>Location</h4>
   <div *ngIf="!fromSelected" class="selected"> this field is required</div>
   <mat-form-field appearance="fill">
-    <mat-label>From location (required)</mat-label>
+    <mat-label>Start point</mat-label>
     <mat-select [(value)]="selectedFromLocation" required>
       <mat-option>None</mat-option>
       <mat-option value="Ashdod">Ashdod</mat-option>
@@ -30,7 +16,7 @@
   <br>
   <div *ngIf="!toSelected" class="selected"> this field is required</div>
   <mat-form-field appearance="fill">
-    <mat-label>To location</mat-label>
+    <mat-label>End point</mat-label>
     <mat-select [(value)]="selectedToLocation" required>
       <mat-option>None</mat-option>
       <mat-option value="Ashdod">Ashdod</mat-option>
@@ -38,11 +24,21 @@
       <mat-option value="TLV">TLV</mat-option>
     </mat-select>
   </mat-form-field>
+  <br>
 
+  <div *ngIf="!exitTimeSelected" class="selected"> this field is required</div>
+  <h5>Enter exit time</h5>
+    <input [ngxTimepicker]="picker1" [(ngModel)]="selectedExitTime">
+    <ngx-material-timepicker #picker1 ></ngx-material-timepicker>
+
+  <div *ngIf="!arrivalTimeSelected" class="selected"> this field is required</div>
+  <h5>Enter arrival time</h5>
+  <input [ngxTimepicker]="picker2" [(ngModel)]="selectedArrivalTime">
+  <ngx-material-timepicker #picker2 ></ngx-material-timepicker>
 
 </mat-dialog-content>
 
 <div mat-dialog-actions style="float: right">
   <button mat-raised-button (click)="onCancelClick()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="onSaveClick(ITEM.value, selectedToLocation, selectedFromLocation, MSG.value)" >Save</button>
+  <button mat-raised-button color="primary" (click)="onSaveClick()" >Save</button>
 </div>

@@ -3,8 +3,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Request} from '../request';
 import {FormControl, Validators} from '@angular/forms';
 
-class DialogData {
-}
 
 @Component({
   selector: 'app-new-request-dialog',
@@ -23,7 +21,7 @@ export class NewRequestDialogComponent implements OnInit {
   toSelected = true;
 
   constructor(public dialogRef: MatDialogRef<NewRequestDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+              @Inject(MAT_DIALOG_DATA) public data) { }
 
   ngOnInit(): void {
   }

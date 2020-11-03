@@ -1,1 +1,12 @@
-<p>route works!</p>
+<div class="item">
+  <mat-chip-list style="display: inline-block; float: left; margin-bottom: 2px">
+    <mat-chip>{{from}}</mat-chip>
+    <span>&#8594;</span>
+    <mat-chip>{{to}}</mat-chip>
+  </mat-chip-list>
+  <button class="button" matTooltip="Click to delete this route" (click)="onClickDelete()">X</button>
+  <br><br>
+  <p style="display: inline-block; float: left; margin-left: 10px">{{exitTime}}</p>
+  <p style="margin-left: 100px">{{arrivalTime}}</p>
+</div>
+

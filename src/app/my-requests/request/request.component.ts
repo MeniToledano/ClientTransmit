@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
@@ -8,16 +8,21 @@ import {MatDialogRef} from '@angular/material/dialog';
 })
 export class RequestComponent implements OnInit{
 
-  @Input() title = 'i need to move a fridge from a to b ';
-  @Input() from = 'Ashdod';
-  @Input() to = 'TLV';
+  @Input() title: string;
+  @Input() from: string;
+  @Input() to: string;
   @Input() status = 'PENDING';
-  @Input() msg = 'I need to move the fridge, its located at 3rd floor and needs to be moved to tel aviv at first floor. There’s an elevator, but it wont fit.';
+  @Input() msg: string;
+  @Input() index: number;
+  @Output() delete: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(){ }
 
   ngOnInit(): void {
   }
 
+  onClickDelete(): void {
+    this.delete.emit(this.index);
+  }
 }
 

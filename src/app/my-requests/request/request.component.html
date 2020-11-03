@@ -5,7 +5,7 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu" class="menu">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="onClickDelete()">
       <span>Delete</span>
     </button>
     <button mat-menu-item [disabled]="status === 'RESOLVED'" (click)="status='RESOLVED'">

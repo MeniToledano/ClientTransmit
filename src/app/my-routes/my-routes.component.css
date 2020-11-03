@@ -1,0 +1,13 @@
+.body{
+  max-width: 700px;
+  margin: auto;
+}
+.right{
+  display: inline-block;
+  float: right;
+}
+.left{
+  display: inline-block;
+  float: left;
+  margin-top: 10px;
+}

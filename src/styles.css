@@ -12,3 +12,10 @@ body {
   float: right;
   margin: 8px;
 }
+.timepicker-overlay{
+  z-index: 10000000 !important;
+}
+
+.timepicker-backdrop-overlay{
+  z-index: 10000000 !important;
+}

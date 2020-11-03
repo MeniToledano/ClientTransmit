@@ -27,5 +27,9 @@ export class MyRequestsComponent implements OnInit {
       }
     });
   }
+
+  onClickDelete(index: number): void {
+    this.requests.splice(index, 1);
+  }
 }
 

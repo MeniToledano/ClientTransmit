@@ -16,6 +16,12 @@ import { MyRoutesComponent } from './my-routes/my-routes.component';
 import {RequestComponent} from './my-requests/request/request.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NewRequestDialogComponent } from './my-requests/new-request-dialog/new-request-dialog.component';
+import {RouteComponent} from './my-routes/route/route.component';
+import { NewRouteDialogComponent } from './my-routes/new-route-dialog/new-route-dialog.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,9 @@ import { NewRequestDialogComponent } from './my-requests/new-request-dialog/new-
     MyRequestsComponent,
     MyRoutesComponent,
     RequestComponent,
-    NewRequestDialogComponent
+    NewRequestDialogComponent,
+    RouteComponent,
+    NewRouteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +45,8 @@ import { NewRequestDialogComponent } from './my-requests/new-request-dialog/new-
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
