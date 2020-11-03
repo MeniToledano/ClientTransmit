@@ -33,7 +33,7 @@ export class NewRequestDialogComponent implements OnInit {
 
   onSaveClick(item: string, to: string, from: string, msg: string): void {
     if (this.checkFields()){
-      this.dialogRef.close(new Request(item, from, to, msg));
+      this.dialogRef.close(new Request(item, from, to, msg, 'PENDING'));
     }
   }
   public checkFields(): boolean{
