@@ -4,7 +4,7 @@
     <span>&#8594;</span>
     <mat-chip>{{to}}</mat-chip>
   </mat-chip-list>
-  <button class="button" matTooltip="Click to delete this route" (click)="onClickDelete()">X</button>
+  <button (click)="onClickDelete()" class="button" matTooltip="Click to delete this route">X</button>
   <br><br>
   <p style="display: inline-block; float: left; margin-left: 10px">{{exitTime}}</p>
   <p style="margin-left: 100px">{{arrivalTime}}</p>

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Request } from '../../my-requests/request';
+import {Request} from '../../my-requests/request';
 
 @Component({
   selector: 'app-ad',
@@ -15,7 +15,8 @@ export class AdComponent implements OnInit {
   @Input() date: string;
   @Input() status: string;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

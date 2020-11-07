@@ -1,12 +1,12 @@
-<app-header [isUserLogged]="userLoggedIn"
+<app-header (page)="pageNumber=$event"
+            [isUserLogged]="userLoggedIn"
             [userName]="userName"
-            (page)="pageNumber=$event"
 ></app-header>
-<app-login *ngIf="pageNumber == 1"
+<app-login (clickLogin)="onLogIn($event)"
            (clickRegistration)="pageNumber=$event"
-           (clickLogin)="onLogIn($event)"
+           *ngIf="pageNumber == 1"
 ></app-login>
-<app-registration *ngIf="pageNumber == 2"></app-registration>
-<app-my-requests *ngIf="pageNumber == 3" ></app-my-requests>
+<app-registration *ngIf="pageNumber == 2" (pageNumber)="pageNumber = $event" (userName)="onLogIn($event)"></app-registration>
+<app-my-requests *ngIf="pageNumber == 3"></app-my-requests>
 <app-my-routes *ngIf="pageNumber == 4"></app-my-routes>
 <app-dashboard *ngIf="pageNumber == 0"></app-dashboard>

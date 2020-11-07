@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Request} from '../request';
-import {FormControl, Validators} from '@angular/forms';
 
 
 @Component({
@@ -10,10 +9,10 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./new-request-dialog.component.css']
 })
 export class NewRequestDialogComponent implements OnInit {
-   selectedFromLocation = 'None';
-   selectedToLocation = 'None';
-   selectMsg = '';
-   selectTitle = '';
+  selectedFromLocation = 'None';
+  selectedToLocation = 'None';
+  selectMsg = '';
+  selectTitle = '';
 
   titleSelected = true;
   msgSelected = true;
@@ -21,7 +20,8 @@ export class NewRequestDialogComponent implements OnInit {
   toSelected = true;
 
   constructor(public dialogRef: MatDialogRef<NewRequestDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data) { }
+              @Inject(MAT_DIALOG_DATA) public data) {
+  }
 
   ngOnInit(): void {
   }
@@ -32,18 +32,19 @@ export class NewRequestDialogComponent implements OnInit {
   }
 
   onSaveClick(item: string, to: string, from: string, msg: string): void {
-    if (this.checkFields()){
+    if (this.checkFields()) {
       this.dialogRef.close(new Request(item, from, to, msg, 'PENDING'));
     }
   }
-  public checkFields(): boolean{
-    this.selectTitle === ''  ? this.titleSelected = false : this.titleSelected = true;
-    this.selectMsg === ''  ? this.msgSelected = false : this.msgSelected = true;
+
+  public checkFields(): boolean {
+    this.selectTitle === '' ? this.titleSelected = false : this.titleSelected = true;
+    this.selectMsg === '' ? this.msgSelected = false : this.msgSelected = true;
     this.selectedFromLocation === 'None' ? this.fromSelected = false : this.fromSelected = true;
     this.selectedToLocation === 'None' ? this.toSelected = false : this.toSelected = true;
-    if (!this.titleSelected || !this.msgSelected || !this.fromSelected || !this.toSelected ){
-     return false;
-   }
+    if (!this.titleSelected || !this.msgSelected || !this.fromSelected || !this.toSelected) {
+      return false;
+    }
     return true;
   }
 

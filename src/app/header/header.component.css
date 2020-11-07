@@ -3,9 +3,11 @@
 .example-spacer {
   flex: 1 1 auto;
 }
-.chosen{
+
+.chosen {
   font-weight: bold;
 }
-#span:hover{
+
+#span:hover {
   cursor: pointer;
 }

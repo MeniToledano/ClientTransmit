@@ -1,20 +1,20 @@
 <div class="body">
   <div>
     <div class="left">
-    <p>My Routes:</p>
-    <p>Editing a route is not possible, you can either remove or add a route.
-    </p>
+      <p>My Routes:</p>
+      <p>Editing a route is not possible, you can either remove or add a route.
+      </p>
     </div>
-    <button mat-raised-button color="primary" class="right" (click)="openDialog()">add new route</button>
+    <button (click)="openDialog()" class="right" color="primary" mat-raised-button>add new route</button>
   </div>
   <br><br><br><br>
   <div *ngFor="let route of routes; let i = index">
-    <app-route [from]="route.fromLocation"
-    [to]="route.toLocation"
-    [arrivalTime]="route.arrivalTime"
-    [exitTime]="route.exitTime"
-    [index] = i
-    (delete)="deleteFromList($event)"></app-route>
+    <app-route (delete)="deleteFromList($event)"
+               [arrivalTime]="route.arrivalTime"
+               [exitTime]="route.exitTime"
+               [from]="route.fromLocation"
+               [index]=i
+               [to]="route.toLocation"></app-route>
     <br>
   </div>
 </div>

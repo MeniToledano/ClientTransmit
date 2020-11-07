@@ -1,19 +1,19 @@
-<h2 mat-dialog-title class="mat-card-title">Add new Request</h2>
+<h2 class="mat-card-title" mat-dialog-title>Add new Request</h2>
 
 <mat-dialog-content>
 
   <div *ngIf="!titleSelected" class="selected"> this field is required</div>
-  <mat-form-field appearance="legacy" style="min-width: 300px" >
-      <mat-label>Enter ad title</mat-label>
-      <input matInput placeholder="Enter ad title" [(ngModel)]="selectTitle" #ITEM [maxLength]="50" >
-    </mat-form-field>
+  <mat-form-field appearance="legacy" style="min-width: 300px">
+    <mat-label>Enter ad title</mat-label>
+    <input #ITEM [(ngModel)]="selectTitle" [maxLength]="50" matInput placeholder="Enter ad title">
+  </mat-form-field>
   <br>
 
   <div *ngIf="!msgSelected" class="selected"> this field is required</div>
-  <mat-form-field appearance="legacy" style="min-width: 300px"  >
-      <mat-label>Write your Message:</mat-label>
-      <input matInput placeholder = 'Write your Message:' [(ngModel)]="selectMsg"  #MSG [maxLength]="50" >
-    </mat-form-field>
+  <mat-form-field appearance="legacy" style="min-width: 300px">
+    <mat-label>Write your Message:</mat-label>
+    <input #MSG [(ngModel)]="selectMsg" [maxLength]="50" matInput placeholder='Write your Message:'>
+  </mat-form-field>
 
   <h4>Location</h4>
   <div *ngIf="!fromSelected" class="selected"> this field is required</div>
@@ -43,6 +43,8 @@
 </mat-dialog-content>
 
 <div mat-dialog-actions style="float: right">
-  <button mat-raised-button (click)="onCancelClick()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="onSaveClick(ITEM.value, selectedToLocation, selectedFromLocation, MSG.value)" >Save</button>
+  <button (click)="onCancelClick()" mat-raised-button>Cancel</button>
+  <button (click)="onSaveClick(ITEM.value, selectedToLocation, selectedFromLocation, MSG.value)" color="primary"
+          mat-raised-button>Save
+  </button>
 </div>

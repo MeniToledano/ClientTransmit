@@ -1,20 +1,22 @@
-.basic-container{
+.basic-container {
   margin: auto;
   width: 50%;
   border: none;
   padding: 10px;
 }
 
-.addNewReq{
+.addNewReq {
   display: inline-block;
   float: right;
 }
-.label{
+
+.label {
   display: inline-block;
   float: left;
   margin-top: 10px;
 }
-.body{
+
+.body {
   max-width: 700px;
   margin: auto;
 }

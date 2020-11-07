@@ -1,22 +1,24 @@
-.item{
+.item {
   border: 2px solid gray;
   border-radius: 10px;
   background-color: whitesmoke;
   padding: 10px
 }
-.requestTitle{
+
+.requestTitle {
   margin-top: 5px;
   margin-bottom: 0;
   width: 450px;
   float: left;
   font-size: 15px;
 }
-.content{
+
+.content {
   max-width: 400px;
   font-size: 10px;
 }
 
-.statusButton{
+.statusButton {
   background-color: lightsalmon;
   display: inline-block;
   float: right;
@@ -24,7 +26,8 @@
   min-width: 100px;
   text-align: center;
 }
-.resolved{
+
+.resolved {
   background-color: lightgreen;
 }
 
@@ -34,14 +37,17 @@
   display: inline-block;
   padding: 3px;
 }
-.custom-arrow{
+
+.custom-arrow {
   float: right;
   display: inline-block;
   margin: 10px;
 }
-.custom-arrow:hover{
+
+.custom-arrow:hover {
   cursor: pointer;
 }
+
 .right {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);

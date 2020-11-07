@@ -1,12 +1,14 @@
-.body{
+.body {
   max-width: 700px;
   margin: auto;
 }
-.right{
+
+.right {
   display: inline-block;
   float: right;
 }
-.left{
+
+.left {
   display: inline-block;
   float: left;
   margin-top: 10px;

@@ -13,7 +13,8 @@ export class RouteComponent implements OnInit {
   @Input() index: number;
   @Output() delete: EventEmitter<number> = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

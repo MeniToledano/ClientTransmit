@@ -2,7 +2,9 @@ export class Route {
   constructor(private fromLocationn: string,
               private toLocationn: string,
               private exitTimee: string,
-              private arivalTimee: string) {  }
+              private arivalTimee: string) {
+  }
+
   get fromLocation(): string {
     return this.fromLocationn;
   }

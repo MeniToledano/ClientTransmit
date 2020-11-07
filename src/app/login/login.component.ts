@@ -1,4 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {UserService} from '../services/user.service';
+import {User} from '../registration/user';
 
 @Component({
   selector: 'app-login',
@@ -7,11 +9,12 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-
+  user: User;
   @Output() clickRegistration: EventEmitter<number> = new EventEmitter<number>();
   @Output() clickLogin: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
   }
@@ -21,9 +24,12 @@ export class LoginComponent implements OnInit {
     this.clickRegistration.emit(2);
   }
 
-  onClickLogin(userName: string): void{
-    if (userName.length > 0) {
-      this.clickLogin.emit(userName);
-    }
+  onClickLogin(userName: string, password: string): void {
+    this.user = new User(userName, password, null, null, null, null);
+    this.userService.onLogIn(this.user).then(
+      (response: Response) => {
+        this.clickLogin.emit(this.userService.user.getFirstName);
+      }
+    );
   }
 }

@@ -1,20 +1,23 @@
-.item{
+.item {
   border: 2px solid gray;
   border-radius: 10px;
   background-color: whitesmoke;
   padding: 10px
 }
-.requestTitle{
+
+.requestTitle {
   margin-top: 5px;
   width: 300px;
   float: left;
   font-size: 15px;
 }
-.content{
+
+.content {
   max-width: 400px;
   font-size: 10px;
 }
-.statusButton{
+
+.statusButton {
   background-color: lightsalmon;
   display: inline-block;
   float: right;
@@ -22,11 +25,12 @@
   min-width: 100px;
   text-align: center;
 }
-.menu{
+
+.menu {
   max-width: 10px;
   float: right;
 }
 
-.resolved{
+.resolved {
   background-color: lightgreen;
 }

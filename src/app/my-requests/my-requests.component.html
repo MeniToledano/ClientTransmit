@@ -1,18 +1,17 @@
-
 <div class="body">
   <div>
-  <p class="label">My Requests:</p>
-  <button mat-raised-button color="primary" class="addNewReq" (click)="openDialog()">add new request</button>
+    <p class="label">My Requests:</p>
+    <button (click)="openDialog()" class="addNewReq" color="primary" mat-raised-button>add new request</button>
   </div>
   <br><br>
-<div *ngFor="let request of requests; let i = index">
-<app-request (delete)="onClickDelete($event)"
-             [from]="request.from"
-             [index]=i
-             [msg]="request.msg"
-             [status]="request.status"
-             [title]="request.title"
-             [to]="request.to"></app-request>
-  <br>
-</div>
+  <div *ngFor="let request of requests; let i = index">
+    <app-request (delete)="onClickDelete($event)"
+                 [from]="request.from"
+                 [index]=i
+                 [msg]="request.msg"
+                 [status]="request.status"
+                 [title]="request.title"
+                 [to]="request.to"></app-request>
+    <br>
+  </div>
 </div>

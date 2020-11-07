@@ -1,4 +1,4 @@
-<h2 mat-dialog-title class="mat-card-title">Add new Route</h2>
+<h2 class="mat-card-title" mat-dialog-title>Add new Route</h2>
 
 <mat-dialog-content>
 
@@ -28,17 +28,17 @@
 
   <div *ngIf="!exitTimeSelected" class="selected"> this field is required</div>
   <h5>Enter exit time</h5>
-    <input [ngxTimepicker]="picker1" [(ngModel)]="selectedExitTime">
-    <ngx-material-timepicker #picker1 ></ngx-material-timepicker>
+  <input [(ngModel)]="selectedExitTime" [ngxTimepicker]="picker1">
+  <ngx-material-timepicker #picker1></ngx-material-timepicker>
 
   <div *ngIf="!arrivalTimeSelected" class="selected"> this field is required</div>
   <h5>Enter arrival time</h5>
-  <input [ngxTimepicker]="picker2" [(ngModel)]="selectedArrivalTime">
-  <ngx-material-timepicker #picker2 ></ngx-material-timepicker>
+  <input [(ngModel)]="selectedArrivalTime" [ngxTimepicker]="picker2">
+  <ngx-material-timepicker #picker2></ngx-material-timepicker>
 
 </mat-dialog-content>
 
 <div mat-dialog-actions style="float: right">
-  <button mat-raised-button (click)="onCancelClick()">Cancel</button>
-  <button mat-raised-button color="primary" (click)="onSaveClick()" >Save</button>
+  <button (click)="onCancelClick()" mat-raised-button>Cancel</button>
+  <button (click)="onSaveClick()" color="primary" mat-raised-button>Save</button>
 </div>

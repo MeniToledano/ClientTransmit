@@ -1,23 +1,23 @@
 <div class="item">
   <h5 class="requestTitle">{{title}}</h5>
-<div>
-  <button mat-icon-button [matMenuTriggerFor]="menu" style="float: right; display: inline-block">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu" class="menu">
-    <button mat-menu-item (click)="onClickDelete()">
-      <span>Delete</span>
+  <div>
+    <button [matMenuTriggerFor]="menu" mat-icon-button style="float: right; display: inline-block">
+      <mat-icon>more_vert</mat-icon>
     </button>
-    <button mat-menu-item [disabled]="status === 'RESOLVED'" (click)="status='RESOLVED'">
-      <span>Mark as resolved</span>
-    </button>
-    <button *ngIf="status === 'RESOLVED'" mat-menu-item (click)="status='PENDING'">
-      <span>Pending</span>
-    </button>
-  </mat-menu>
+    <mat-menu #menu="matMenu" class="menu">
+      <button (click)="onClickDelete()" mat-menu-item>
+        <span>Delete</span>
+      </button>
+      <button (click)="status='RESOLVED'" [disabled]="status === 'RESOLVED'" mat-menu-item>
+        <span>Mark as resolved</span>
+      </button>
+      <button (click)="status='PENDING'" *ngIf="status === 'RESOLVED'" mat-menu-item>
+        <span>Pending</span>
+      </button>
+    </mat-menu>
 
-  <mat-chip [ngClass]="{resolved:status=='RESOLVED'}" class="statusButton">{{status}}</mat-chip>
-</div>
+    <mat-chip [ngClass]="{resolved:status=='RESOLVED'}" class="statusButton">{{status}}</mat-chip>
+  </div>
   <br><br>
   <p class="content">{{msg}}</p>
   <mat-chip-list aria-label="Fish selection">

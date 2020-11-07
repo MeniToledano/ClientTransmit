@@ -1,28 +1,29 @@
-
 <p>
   <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button aria-label="Example icon-button with menu icon" class="example-icon" mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
     <span (click)="onClickSpan()" id="span">OnTheGo</span>
     <span class="example-spacer"></span>
-    <button *ngIf="isUserLogged"
+    <button (click)="onChoosingPage('myRequests')"
+            *ngIf="isUserLogged" [ngClass]="{chosen:chosenPage=='myRequests'}"
+            class="mat-button"
             style="position: absolute;
-            left: 160px" class="mat-button"
-            (click)="onChoosingPage('myRequests')"
-            [ngClass]="{chosen:chosenPage=='myRequests'}"
-    >My Requests</button>
-    <button *ngIf="isUserLogged"
+            left: 160px"
+    >My Requests
+    </button>
+    <button (click)="onChoosingPage('myRoutes')"
+            *ngIf="isUserLogged" [ngClass]="{chosen:chosenPage=='myRoutes'}"
+            class="mat-button"
             style="position: absolute;
-            left: 260px" class="mat-button"
-            (click)="onChoosingPage('myRoutes')"
-            [ngClass]="{chosen:chosenPage=='myRoutes'}"
-    >My Routes</button>
+            left: 260px"
+    >My Routes
+    </button>
     <button *ngIf="isUserLogged" class="mat-button">Hi {{userName}}!</button>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <button aria-label="Example icon-button with heart icon" class="example-icon favorite-icon" mat-icon-button>
       <mat-icon>favorite</mat-icon>
     </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button aria-label="Example icon-button with share icon" class="example-icon" mat-icon-button>
       <mat-icon>share</mat-icon>
     </button>
   </mat-toolbar>

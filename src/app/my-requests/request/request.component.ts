@@ -1,12 +1,11 @@
-import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
-import {MatDialogRef} from '@angular/material/dialog';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']
 })
-export class RequestComponent implements OnInit{
+export class RequestComponent implements OnInit {
 
   @Input() title: string;
   @Input() from: string;
@@ -16,7 +15,8 @@ export class RequestComponent implements OnInit{
   @Input() index: number;
   @Output() delete: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(){ }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

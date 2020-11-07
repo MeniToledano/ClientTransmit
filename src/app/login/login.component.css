@@ -1,10 +1,11 @@
-.basic-container{
+.basic-container {
   margin: auto;
   width: 50%;
   border: none;
   padding: 10px;
 }
-.login{
-font-size: 30px;
+
+.login {
+  font-size: 30px;
   margin-bottom: 30px;
 }
