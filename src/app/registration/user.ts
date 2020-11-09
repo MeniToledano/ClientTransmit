@@ -1,41 +1,65 @@
 export class User {
-
-  private userId: string;
-  constructor(private userName: string,
-              private password: string,
-              private firstName: string,
-              private lastName: string,
-              private email: string,
-              private phone: string) {
-  }
-
-  get getUserId(): string {
+  get _userId(): string {
     return this.userId;
   }
-  set setUserId(value: string) {
+
+  set _userId(value: string) {
     this.userId = value;
   }
-  get getUserName(): string {
+
+  get _userName(): string {
     return this.userName;
   }
 
-  get getPassword(): string {
+  set _userName(value: string) {
+    this.userName = value;
+  }
+
+  get _password(): string {
     return this.password;
   }
 
-  get getFirstName(): string {
+  set _password(value: string) {
+    this.password = value;
+  }
+
+  get _firstName(): string {
     return this.firstName;
   }
 
-  get getLastName(): string {
+  set _firstName(value: string) {
+    this.firstName = value;
+  }
+
+  get _lastName(): string {
     return this.lastName;
   }
 
-  get getEmail(): string {
+  set _lastName(value: string) {
+    this.lastName = value;
+  }
+
+  get _email(): string {
     return this.email;
   }
 
-  get getPhone(): string {
+  set _email(value: string) {
+    this.email = value;
+  }
+
+  get _phone(): string {
     return this.phone;
   }
+
+  set _phone(value: string) {
+    this.phone = value;
+  }
+  constructor(){}
+  private userId: string;
+  private userName: string;
+  private password: string;
+  private firstName: string;
+  private lastName: string;
+  private email: string;
+  private phone: string;
 }

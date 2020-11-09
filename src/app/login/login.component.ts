@@ -10,6 +10,7 @@ import {User} from '../registration/user';
 export class LoginComponent implements OnInit {
 
   user: User;
+  userNotFound = false;
   @Output() clickRegistration: EventEmitter<number> = new EventEmitter<number>();
   @Output() clickLogin: EventEmitter<string> = new EventEmitter<string>();
 
@@ -25,10 +26,16 @@ export class LoginComponent implements OnInit {
   }
 
   onClickLogin(userName: string, password: string): void {
-    this.user = new User(userName, password, null, null, null, null);
+    this.user = new User();
+    this.user._userName = userName;
+    this.user._password = password;
     this.userService.onLogIn(this.user).then(
-      (response: Response) => {
-        this.clickLogin.emit(this.userService.user.getFirstName);
+      (response: string) => {
+        if (response === 'not found'){
+          this.userNotFound = true;
+        } else {
+          this.clickLogin.emit(response);
+        }
       }
     );
   }

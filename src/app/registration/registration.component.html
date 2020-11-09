@@ -45,6 +45,7 @@
       <mat-error *ngIf="emailForm.invalid">{{getPhoneErrorMessage()}}</mat-error>
     </mat-form-field>
 </div>
+  <div *ngIf="userAlreadyExist" class="invalid">User name already exist in the system!</div>
   <div>
     <button class="button" color="primary" mat-raised-button (click)="onClickRegistration()">Register</button>
     <button class="button" color="primary" mat-raised-button (click)="onClickCancel()">Cancel</button>

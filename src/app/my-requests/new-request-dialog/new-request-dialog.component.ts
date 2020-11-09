@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Request} from '../request';
+import {RequestService} from '../../services/request.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class NewRequestDialogComponent implements OnInit {
   toSelected = true;
 
   constructor(public dialogRef: MatDialogRef<NewRequestDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data) {
+              @Inject(MAT_DIALOG_DATA) public data,
+              private requestService: RequestService) {
   }
 
   ngOnInit(): void {
@@ -33,7 +35,7 @@ export class NewRequestDialogComponent implements OnInit {
 
   onSaveClick(item: string, to: string, from: string, msg: string): void {
     if (this.checkFields()) {
-      this.dialogRef.close(new Request(item, from, to, msg, 'PENDING'));
+      this.dialogRef.close(new Request(null, item, from, to, msg, 'PENDING'));
     }
   }
 

@@ -1,11 +1,18 @@
 export class Request {
-  constructor(private titleField: string,
+  constructor(private routeId: string,
+              private titleField: string,
               private fromField: string,
               private toField: string,
               private msgField: string,
               private statusField: string) {
   }
+  get getRouteId(): string {
+    return this.routeId;
+  }
 
+  set setRouteId(value: string) {
+    this.routeId = value;
+  }
   get status(): string {
     return this.statusField;
   }

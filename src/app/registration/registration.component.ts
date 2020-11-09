@@ -17,9 +17,10 @@ export class RegistrationComponent implements OnInit {
   phoneForm = new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]);
   firstNameForm = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]{2,30}$')]);
   lastNameForm = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]{2,30}$')]);
+  userAlreadyExist = false;
   @Output() userName: EventEmitter<string> = new EventEmitter<string>();
   constructor(public userService: UserService) { }
-
+  user: User;
   ngOnInit(): void {
   }
   getUserErrorMessage(): string{
@@ -41,10 +42,21 @@ export class RegistrationComponent implements OnInit {
   }
   onClickRegistration(): void {
     if ( this.validateAll()) {
-      this.userService.onRegistration(this.userNameForm.value, this.passwordForm.value, this.firstNameForm.value, this.lastNameForm.value,
-        this.emailForm.value, this.phoneForm.value).then(
-        (response: Response) => {
-          this.userName.emit(this.userService.user.getUserName);
+      this.user = new User();
+      this.user._userName = this.userNameForm.value;
+      this.user._password = this.passwordForm.value;
+      this.user._firstName = this.firstNameForm.value;
+      this.user._lastName = this.lastNameForm.value;
+      this.user._email = this.emailForm.value;
+      this.user._phone = this.phoneForm.value;
+
+      this.userService.onRegistration(this.user).then(
+        (response: string) => {
+          if (response === 'User name already exist'){
+            this.userAlreadyExist = true;
+          } else {
+            this.userName.emit(response);
+          }
         }
       );
     }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Request} from './request';
 import {MatDialog} from '@angular/material/dialog';
 import {NewRequestDialogComponent} from './new-request-dialog/new-request-dialog.component';
+import {RequestService} from '../services/request.service';
 
 @Component({
   selector: 'app-my-requests',
@@ -9,12 +10,13 @@ import {NewRequestDialogComponent} from './new-request-dialog/new-request-dialog
   styleUrls: ['./my-requests.component.css']
 })
 export class MyRequestsComponent implements OnInit {
-  requests: Request[] = [new Request('I need to move a fridge form a to b', 'Ashdod', 'TLV', 'I need to move the fridge,' +
+  requests: Request[] = [new Request(null, 'I need to move a fridge form a to b', 'Ashdod', 'TLV', 'I need to move the fridge,' +
     ' its located at 3rd floor and needs to be moved to tel aviv at first floor. There’s an elevator, but it wont fit.', 'PENDING'),
-    new Request('need to move microwave from c to d ', 'Ramat-Gan', 'Eilat', 'I need to move the fridge,' +
+    new Request(null, 'need to move microwave from c to d ', 'Ramat-Gan', 'Eilat', 'I need to move the fridge,' +
       ' its located at 3rd floor and needs to be moved to tel aviv at first floor. There’s an elevator, but it wont fit.', 'PENDING')];
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog,
+              private requestService: RequestService) {
   }
 
   ngOnInit(): void {
@@ -26,12 +28,14 @@ export class MyRequestsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.requests.push(result);
+        this.requestService.updateRoutes(this.requests);
       }
     });
   }
 
   onClickDelete(index: number): void {
     this.requests.splice(index, 1);
+    this.requestService.updateRoutes(this.requests);
   }
 }
 

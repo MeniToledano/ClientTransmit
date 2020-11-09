@@ -12,7 +12,8 @@
       <input matInput placeholder="Password" #PASSWORD>
     </mat-form-field>
   </p>
-  <div class="example-button-row">
+  <div *ngIf="userNotFound" class="invalid">User name \ Password are not valid!</div>
+  <div>
     <button (click)="onClickLogin(USERNAME.value, PASSWORD.value)" color="primary" mat-raised-button style="margin-right: 10px">Login
     </button>
     <button (click)="onClickRegistration()" color="primary" mat-raised-button>Register</button>
