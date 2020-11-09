@@ -17,7 +17,7 @@ export class RequestService {
   }
 
   private updateServer(): void {
-    this.httpReqService.setUserRequestedRoutes(this.requestedRoutes, this.userService.userId).toPromise().then(
+    this.httpReqService.setUserRequestedRoutes(this.requestedRoutes, this.userService.user._userId).toPromise().then(
       (response) => {
         this.requestedRoutes = response;
       },
