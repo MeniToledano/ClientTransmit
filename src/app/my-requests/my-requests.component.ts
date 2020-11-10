@@ -2,7 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Request} from './request';
 import {MatDialog} from '@angular/material/dialog';
 import {NewRequestDialogComponent} from './new-request-dialog/new-request-dialog.component';
-import {RequestService} from '../services/request.service';
+import {AdService} from '../services/ad.service';
+import {Ad} from '../dashboard/ad';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-my-requests',
@@ -10,32 +12,54 @@ import {RequestService} from '../services/request.service';
   styleUrls: ['./my-requests.component.css']
 })
 export class MyRequestsComponent implements OnInit {
-  requests: Request[] = [new Request(null, 'I need to move a fridge form a to b', 'Ashdod', 'TLV', 'I need to move the fridge,' +
-    ' its located at 3rd floor and needs to be moved to tel aviv at first floor. There’s an elevator, but it wont fit.', 'PENDING'),
-    new Request(null, 'need to move microwave from c to d ', 'Ramat-Gan', 'Eilat', 'I need to move the fridge,' +
-      ' its located at 3rd floor and needs to be moved to tel aviv at first floor. There’s an elevator, but it wont fit.', 'PENDING')];
+  ads: Ad[] = [];
+  ad1: Ad;
+  ad: Ad;
+  object: Object;
 
   constructor(public dialog: MatDialog,
-              private requestService: RequestService) {
+              private adService: AdService,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
+    this.ad1 = new Ad();
+    this.ad1._request = new Request(null,
+      'Raanana',
+      'Ashdod',
+      '08:00',
+      '07:00');
+    this.ad1._adLastModifiedDate = null;
+    this.ad1._adLastModifiedTime = null;
+    this.ad1._user = null;
+    this.ad1._status = 'PENDING';
+    this.ad1._description = 'I need to move the fridge, its located at 3rd floor and needs to be moved to tel. There’s an elevator';
+    this.ad1._title = 'big long title';
+    this.ads.push(this.ad1);
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(NewRequestDialogComponent, {});
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.requests.push(result);
-        this.requestService.updateRoutes(this.requests);
+    dialogRef.afterClosed().subscribe((response) => {
+      if (response) {
+        this.ad = new Ad();
+        this.ad._request = new Request(null, response.to, response.from, null, null);
+        this.ad._title = response.title;
+        this.ad._description = response.description;
+        this.ad._status = 'PENDING';
+        this.ad._user = this.userService.user;
+        this.ad._userId = this.userService.user._userId;
+        this.ads.push(this.ad);
+        this.object = this.ad;
+        this.adService.addAd(this.ad);
       }
     });
   }
 
   onClickDelete(index: number): void {
-    this.requests.splice(index, 1);
-    this.requestService.updateRoutes(this.requests);
+    this.ads.splice(index, 1);
+    // this.adService.addAs(this.ads);
   }
 }
 

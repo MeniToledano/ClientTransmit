@@ -4,14 +4,20 @@
     <button (click)="openDialog()" class="addNewReq" color="primary" mat-raised-button>add new request</button>
   </div>
   <br><br>
-  <div *ngFor="let request of requests; let i = index">
+  <div *ngFor="let ad of ads; let i = index">
     <app-request (delete)="onClickDelete($event)"
-                 [from]="request.from"
+                 [from]="ad._request._fromLocation"
                  [index]=i
-                 [msg]="request.msg"
-                 [status]="request.status"
-                 [title]="request.title"
-                 [to]="request.to"></app-request>
+                 [description]="ad._description"
+                 [status]="ad._status"
+                 [title]="ad._title"
+                 [to]="ad._request._toLocation"></app-request>
     <br>
   </div>
+</div>
+<div>
+  <p>Without JSON pipe:</p>
+  <p>{{object}}</p>
+  <p>With JSON pipe:</p>
+  <p>{{object | json}}</p>
 </div>

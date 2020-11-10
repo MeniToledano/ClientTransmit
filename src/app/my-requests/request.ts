@@ -1,36 +1,46 @@
 export class Request {
+
   constructor(private routeId: string,
-              private titleField: string,
-              private fromField: string,
-              private toField: string,
-              private msgField: string,
-              private statusField: string) {
+              private toLocation: string,
+              private fromLocation: string,
+              private exitTime: string,
+              private arrivalTime: string) {
   }
   get getRouteId(): string {
     return this.routeId;
   }
+  get _exitTime(): string {
+    return this.exitTime;
+  }
 
+  set _exitTime(value: string) {
+    this.exitTime = value;
+  }
+
+  get _arrivalTime(): string {
+    return this.arrivalTime;
+  }
+
+  set _arrivalTime(value: string) {
+    this.arrivalTime = value;
+  }
   set setRouteId(value: string) {
     this.routeId = value;
   }
-  get status(): string {
-    return this.statusField;
+  get _fromLocation(): string {
+    return this.fromLocation;
+  }
+  set _fromLocation(value: string) {
+    this.fromLocation = value;
   }
 
-  get title(): string {
-    return this.titleField;
+  get _toLocation(): string {
+    return this.toLocation;
+  }
+  set _toLocation(value: string) {
+    this.toLocation = value;
   }
 
-  get from(): string {
-    return this.fromField;
-  }
 
-  get to(): string {
-    return this.toField;
-  }
-
-  get msg(): string {
-    return this.msgField;
-  }
 
 }

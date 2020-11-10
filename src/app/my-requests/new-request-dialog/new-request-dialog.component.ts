@@ -1,7 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Request} from '../request';
-import {RequestService} from '../../services/request.service';
 
 
 @Component({
@@ -21,8 +20,7 @@ export class NewRequestDialogComponent implements OnInit {
   toSelected = true;
 
   constructor(public dialogRef: MatDialogRef<NewRequestDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data,
-              private requestService: RequestService) {
+              @Inject(MAT_DIALOG_DATA) public data) {
   }
 
   ngOnInit(): void {
@@ -33,9 +31,9 @@ export class NewRequestDialogComponent implements OnInit {
 
   }
 
-  onSaveClick(item: string, to: string, from: string, msg: string): void {
+  onSaveClick(title: string, to: string, from: string, description: string): void {
     if (this.checkFields()) {
-      this.dialogRef.close(new Request(null, item, from, to, msg, 'PENDING'));
+      this.dialogRef.close({ title, from, to, description});
     }
   }
 
@@ -44,10 +42,7 @@ export class NewRequestDialogComponent implements OnInit {
     this.selectMsg === '' ? this.msgSelected = false : this.msgSelected = true;
     this.selectedFromLocation === 'None' ? this.fromSelected = false : this.fromSelected = true;
     this.selectedToLocation === 'None' ? this.toSelected = false : this.toSelected = true;
-    if (!this.titleSelected || !this.msgSelected || !this.fromSelected || !this.toSelected) {
-      return false;
-    }
-    return true;
+    return !(!this.titleSelected || !this.msgSelected || !this.fromSelected || !this.toSelected);
   }
 
 }

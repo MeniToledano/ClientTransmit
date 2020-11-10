@@ -14,6 +14,8 @@ export class AdComponent implements OnInit {
   @Input() time: string;
   @Input() date: string;
   @Input() status: string;
+  @Input() title: string;
+  @Input() description: string;
 
   constructor() {
   }

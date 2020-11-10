@@ -3,12 +3,14 @@
     <p class="label">Dashboard:</p>
   </div>
   <div *ngFor="let ad of ads; let i = index">
-    <app-ad [date]="ad.adLastModifiedDate"
-            [request]="ad.request"
-            [status]="ad.request.status"
-            [time]="ad.adLastModifiedTime"
-            [userLastName]="ad.userLastName"
-            [userName]="ad.userName"
+    <app-ad [date]="ad._adLastModifiedDate"
+            [request]="ad._request"
+            [status]="ad._status"
+            [time]="ad._adLastModifiedTime"
+            [userLastName]="ad._user._lastName"
+            [userName]="ad._user._userName"
+            [description]="ad._description"
+            [title]="ad._title"
     ></app-ad>
     <br>
   </div>

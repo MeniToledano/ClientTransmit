@@ -9,7 +9,7 @@ import {_MatMenuDirectivesModule} from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MaterialModule} from './material.module';
-import {FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegistrationComponent} from './registration/registration.component';
 import {MyRequestsComponent} from './my-requests/my-requests.component';
 import {MyRoutesComponent} from './my-routes/my-routes.component';

@@ -11,7 +11,7 @@ export class RequestComponent implements OnInit {
   @Input() from: string;
   @Input() to: string;
   @Input() status = 'PENDING';
-  @Input() msg: string;
+  @Input() description: string;
   @Input() index: number;
   @Output() delete: EventEmitter<number> = new EventEmitter<number>();
 
