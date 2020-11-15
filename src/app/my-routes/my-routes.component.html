@@ -10,11 +10,11 @@
   <br><br><br><br>
   <div *ngFor="let route of routes; let i = index">
     <app-route (delete)="deleteFromList($event)"
-               [arrivalTime]="route.arrivalTime"
-               [exitTime]="route.exitTime"
-               [from]="route.fromLocation"
+               [arrivalTime]="route._arrivalTime"
+               [exitTime]="route._exitTime"
+               [from]="route._fromLocation"
                [index]=i
-               [to]="route.toLocation"></app-route>
+               [to]="route._toLocation"></app-route>
     <br>
   </div>
 </div>

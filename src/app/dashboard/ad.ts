@@ -1,7 +1,15 @@
 import {Request} from '../my-requests/request';
 import {User} from '../registration/user';
+import {AdData, AdsResponse} from '../services/server-model/ad-response.model';
 
 export class Ad {
+  get _adId(): string {
+    return this.adId;
+  }
+
+  set _adId(value: string) {
+    this.adId = value;
+  }
   get _request(): Request {
     return this.route;
   }
@@ -63,6 +71,8 @@ export class Ad {
   }
   constructor() {
   }
+  private static ad: Ad;
+  private static ads: Ad[];
   private adId: string;
   private userId: string;
   private status: string;
@@ -72,8 +82,25 @@ export class Ad {
   private user: User;
   private adLastModifiedTime: string;
   private adLastModifiedDate: string;
-  private createDateTime: string; // test for the request
-  private updateDateTime: string; // test for the request
   private volunteerData: User;
 
+  static plainToClass(ad: AdData): Ad {
+    this.ad = null;
+    this.ad = new Ad();
+    this.ad._adId = ad.adId; // here i have a problem?!!?
+    this.ad._user = User.plainToClass(ad.user);
+    this.ad._userId = ad.userId;
+    this.ad._title = ad.title;
+    this.ad._description = ad.description;
+    this.ad._status = ad.status;
+    this.ad._request = Request.plainToText(ad.route);
+    this.ad._adLastModifiedDate = ad.updateDateTime;
+    return this.ad;
+  }
+
+  static arrPlainToClass(adsJson: AdData[]): Ad[]{
+   this.ads = [];
+   adsJson.forEach(ad => this.ads.push(Ad.plainToClass(ad)));
+   return this.ads;
+  }
 }

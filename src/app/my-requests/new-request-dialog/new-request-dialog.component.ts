@@ -40,8 +40,8 @@ export class NewRequestDialogComponent implements OnInit {
   public checkFields(): boolean {
     this.selectTitle === '' ? this.titleSelected = false : this.titleSelected = true;
     this.selectMsg === '' ? this.msgSelected = false : this.msgSelected = true;
-    this.selectedFromLocation === 'None' ? this.fromSelected = false : this.fromSelected = true;
-    this.selectedToLocation === 'None' ? this.toSelected = false : this.toSelected = true;
+    this.selectedFromLocation === 'None' || this.selectedFromLocation === undefined ? this.fromSelected = false : this.fromSelected = true;
+    this.selectedToLocation === 'None'  || this.selectedToLocation === undefined ? this.toSelected = false : this.toSelected = true;
     return !(!this.titleSelected || !this.msgSelected || !this.fromSelected || !this.toSelected);
   }
 

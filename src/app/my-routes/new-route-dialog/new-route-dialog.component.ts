@@ -33,7 +33,8 @@ export class NewRouteDialogComponent implements OnInit {
 
   onSaveClick(): void {
     if (this.checkFields()) {
-      this.dialogRef.close(new Route(this.selectedFromLocation, this.selectedToLocation, this.selectedExitTime, this.selectedArrivalTime));
+      this.dialogRef.close(new Route(null, this.selectedFromLocation, this.selectedToLocation, this.selectedExitTime,
+        this.selectedArrivalTime));
     }
   }
 

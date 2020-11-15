@@ -1,3 +1,6 @@
+import {RouteData} from '../services/server-model/route-response.model';
+import {Route} from '../my-routes/route';
+
 export class Request {
 
   constructor(private routeId: string,
@@ -42,5 +45,13 @@ export class Request {
   }
 
 
-
+  static plainToText(requestJson: RouteData): Request {
+    return new Request(
+      requestJson.routeId,
+      requestJson.toLocation,
+      requestJson.fromLocation,
+      requestJson.exitTime,
+      requestJson.arrivalTime
+    );
+  }
 }
