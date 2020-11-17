@@ -8,10 +8,10 @@
       <button (click)="onClickDelete()" mat-menu-item>
         <span>Delete</span>
       </button>
-      <button (click)="status='RESOLVED'" [disabled]="status === 'RESOLVED'" mat-menu-item>
+      <button (click)="onChangeStatus('RESOLVED')" [disabled]="status === 'RESOLVED'" mat-menu-item>
         <span>Mark as resolved</span>
       </button>
-      <button (click)="status='PENDING'" *ngIf="status === 'RESOLVED'" mat-menu-item>
+      <button (click)="onChangeStatus('PENDING')" *ngIf="status === 'RESOLVED'" mat-menu-item>
         <span>Pending</span>
       </button>
     </mat-menu>

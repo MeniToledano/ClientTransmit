@@ -11,13 +11,8 @@
                  [description]="ad._description"
                  [status]="ad._status"
                  [title]="ad._title"
-                 [to]="ad._request._toLocation"></app-request>
+                 [to]="ad._request._toLocation"
+                 (statusChange)="updateAdStatus($event)"></app-request>
     <br>
   </div>
 </div>
-<!--<div>-->
-<!--  <p>Without JSON pipe:</p>-->
-<!--  <p>{{object}}</p>-->
-<!--  <p>With JSON pipe:</p>-->
-<!--  <p>{{object | json}}</p>-->
-<!--</div>-->

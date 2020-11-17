@@ -23,3 +23,4 @@ export interface AdResponse {
 export interface AdsResponse {
   ads: AdData[];
 }
+

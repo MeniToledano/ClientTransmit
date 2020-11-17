@@ -15,7 +15,6 @@ import {User} from '../registration/user';
 export class MyRequestsComponent implements OnInit {
   ads: Ad[] = [];
   ad: Ad;
-  tempAd: Ad[] = [];
 
   constructor(public dialog: MatDialog,
               private adService: AdService,
@@ -59,8 +58,11 @@ export class MyRequestsComponent implements OnInit {
   }
 
   onClickDelete(index: number): void {
-    console.log('a');
     this.adService.deleteAd(this.userService.user._userId, this.ads.splice(index, 1)[0]._adId);
+  }
+
+  updateAdStatus({string: status, number: index}): void {
+    this.adService.onUpdateStatus(status, this.ads[index]._adId);
   }
 }
 
