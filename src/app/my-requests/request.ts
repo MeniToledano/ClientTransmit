@@ -1,5 +1,4 @@
 import {RouteData} from '../services/server-model/route-response.model';
-import {Route} from '../my-routes/route';
 
 export class Request {
 

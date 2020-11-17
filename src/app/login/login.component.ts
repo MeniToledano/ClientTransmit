@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {User} from '../registration/user';
+import {Login} from './login';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import {User} from '../registration/user';
 })
 export class LoginComponent implements OnInit {
 
-  user: User;
+  login: Login;
   userNotFound = false;
   @Output() clickRegistration: EventEmitter<number> = new EventEmitter<number>();
   @Output() clickLogin: EventEmitter<string> = new EventEmitter<string>();
@@ -26,10 +27,8 @@ export class LoginComponent implements OnInit {
   }
 
   onClickLogin(userName: string, password: string): void {
-    this.user = new User();
-    this.user._userName = userName;
-    this.user._password = password;
-    this.userService.onLogIn(this.user).then(
+    this.login = new Login(userName, password);
+    this.userService.onLogIn(this.login).then(
       (response: string) => {
         if (response === 'not found'){
           this.userNotFound = true;

@@ -1,7 +1,5 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
 import {HttpReqService} from './http-req.service';
-import {User} from '../registration/user';
-import {Ad} from '../dashboard/ad';
 import {Route} from '../my-routes/route';
 
 @Injectable({

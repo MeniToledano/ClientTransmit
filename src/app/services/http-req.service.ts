@@ -8,6 +8,7 @@ import {UserResponse} from './server-model/user-response.model';
 import {AdResponse, AdsResponse} from './server-model/ad-response.model';
 import {RouteResponse} from './server-model/route-response.model';
 import {Route} from '../my-routes/route';
+import {Login} from '../login/login';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +30,10 @@ export class HttpReqService {
     );
   }
 
-  // on login - need to add on server side dedicated login api
-  getUser(user: User): Observable<User> { // this need to be replace with new API
-    this.tempUrlString = this.BASE_URL + '/user';
-    return this.http.post<UserResponse>(this.tempUrlString, user).pipe(
+  // on login
+  getUser(userCredentials: Login): Observable<User> { // this need to be replace with new API
+    this.tempUrlString = this.BASE_URL + '/user/login';
+    return this.http.post<UserResponse>(this.tempUrlString, userCredentials).pipe(
       map((response: UserResponse) => {
         return User.plainToClass(response.user);
       })

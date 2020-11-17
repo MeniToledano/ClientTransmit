@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {User} from '../registration/user';
 import {HttpReqService} from './http-req.service';
+import {Login} from '../login/login';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,8 @@ export class UserService {
     );
   }
 
-  async onLogIn(user: User): Promise<any>{
-    return this.httpReqService.getUser(user).toPromise().then(
+  async onLogIn(userCredentials: Login): Promise<any>{
+    return this.httpReqService.getUser(userCredentials).toPromise().then(
       (response: User) => {
         this.user = response;
         return this.user._firstName;
