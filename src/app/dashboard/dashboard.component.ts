@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Request} from '../my-requests/request';
 import {Ad} from './ad';
 import {User} from '../registration/user';
 import {AdService} from '../services/ad.service';

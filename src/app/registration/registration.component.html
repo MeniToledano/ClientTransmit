@@ -1,53 +1,53 @@
 <div class="basic-container">
   <h5 class="login">REGISTRATION</h5>
-<div>
+  <div>
     <mat-form-field appearance="standard">
       <mat-label>User name</mat-label>
-      <input matInput placeholder="UserName" required #userName [maxLength]="20" [formControl]="userNameForm">
+      <input #userName [formControl]="userNameForm" [maxLength]="20" matInput placeholder="UserName" required>
       <mat-hint align="start">{{userName.value?.length || 0}}/20</mat-hint>
       <mat-error *ngIf="userNameForm.invalid">{{getUserErrorMessage()}}</mat-error>
     </mat-form-field>
-</div>
-<div>
+  </div>
+  <div>
     <mat-form-field appearance="standard">
       <mat-label>Password</mat-label>
-      <input  matInput placeholder="Password" required  [formControl]="passwordForm" >
+      <input [formControl]="passwordForm" matInput placeholder="Password" required>
       <mat-hint align="start">8 char minimum</mat-hint>
       <mat-error *ngIf="passwordForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
     </mat-form-field>
-</div>
-<div>
+  </div>
+  <div>
     <mat-form-field appearance="standard">
       <mat-label>First name</mat-label>
-      <input matInput placeholder="First Name"  required [formControl]="firstNameForm">
+      <input [formControl]="firstNameForm" matInput placeholder="First Name" required>
       <mat-error *ngIf="firstNameForm.invalid">{{getFirstNameErrorMessage()}}</mat-error>
     </mat-form-field>
-</div>
-<div>
+  </div>
+  <div>
     <mat-form-field appearance="standard">
       <mat-label>Last name</mat-label>
-      <input matInput placeholder="Last Name" required [formControl]="lastNameForm">
+      <input [formControl]="lastNameForm" matInput placeholder="Last Name" required>
       <mat-error *ngIf="lastNameForm.invalid">{{getLastNameErrorMessage()}}</mat-error>
     </mat-form-field>
-</div>
-<div>
+  </div>
+  <div>
     <mat-form-field appearance="standard">
       <mat-label>Email</mat-label>
-      <input  matInput placeholder="pat@example.com" required [formControl]="emailForm">
+      <input [formControl]="emailForm" matInput placeholder="pat@example.com" required>
       <mat-error *ngIf="emailForm.invalid">{{getEmailErrorMessage()}}</mat-error>
     </mat-form-field>
-</div>
-<div>
+  </div>
+  <div>
     <mat-form-field appearance="standard">
       <mat-label>Phone number</mat-label>
-      <input matInput placeholder="Phone" required [formControl]="phoneForm">
+      <input [formControl]="phoneForm" matInput placeholder="Phone" required>
       <mat-hint align="start">example 0523334444</mat-hint>
       <mat-error *ngIf="emailForm.invalid">{{getPhoneErrorMessage()}}</mat-error>
     </mat-form-field>
-</div>
+  </div>
   <div *ngIf="userAlreadyExist" class="invalid">User name already exist in the system!</div>
   <div>
-    <button class="button" color="primary" mat-raised-button (click)="onClickRegistration()">Register</button>
-    <button class="button" color="primary" mat-raised-button (click)="onClickCancel()">Cancel</button>
+    <button (click)="onClickRegistration()" class="button" color="primary" mat-raised-button>Register</button>
+    <button (click)="onClickCancel()" class="button" color="primary" mat-raised-button>Cancel</button>
   </div>
 </div>

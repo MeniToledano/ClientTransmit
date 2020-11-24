@@ -1,4 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../services/user.service';
+import {Router} from '@angular/router';
+import {StorageManagerService} from '../services/storage-manager.service';
 
 @Component({
   selector: 'app-header',
@@ -6,30 +9,30 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Input() isUserLogged: boolean;
-  @Input() userName: string;
-  @Output() page: EventEmitter<number> = new EventEmitter<number>();
+  isUserLogged: boolean;
+  userName: string;
   chosenPage = '';
 
-  constructor() {
+  constructor(private userService: UserService,
+              private router: Router,
+              private storageManagerService: StorageManagerService) {
   }
 
   ngOnInit(): void {
+    this.userService.onLogIn(JSON.parse(this.storageManagerService.getData('credentials'))).then((data: any) => {
+        if (this.userService.getUser() === undefined) {
+          this.router.navigate(['login']);
+        } else {
+          this.router.navigate(['dashboard']);
+          this.userName = this.userService.getUser();
+        }
+      }
+    );
+
+    this.userService.userName.subscribe((userName: string) => {
+      this.userName = userName;
+      this.isUserLogged = true;
+    });
   }
 
-  onChoosingPage(myRequest: string): void {
-    this.chosenPage = myRequest;
-    if (this.chosenPage === 'myRequests') {
-      this.page.emit(3);
-    } else {
-      this.page.emit(4);
-    }
-  }
-
-  onClickSpan(): void {
-    this.chosenPage = '';
-    if (this.isUserLogged) {
-      this.page.emit(0);
-    }
-  }
 }

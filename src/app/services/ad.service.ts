@@ -85,7 +85,7 @@ export class AdService {
       (response: string) => {
         if (response === null || response === undefined) {
           console.log(response);
-        }else{
+        } else {
           if (response === 'Status updated!') {
             console.log('ad updated successfully');
           }

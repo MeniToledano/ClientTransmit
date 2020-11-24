@@ -11,7 +11,6 @@ import {MatIconModule} from '@angular/material/icon';
 import {MaterialModule} from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RegistrationComponent} from './registration/registration.component';
-import {MyRequestsComponent} from './my-requests/my-requests.component';
 import {MyRoutesComponent} from './my-routes/my-routes.component';
 import {RequestComponent} from './my-requests/request/request.component';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -19,13 +18,15 @@ import {NewRequestDialogComponent} from './my-requests/new-request-dialog/new-re
 import {RouteComponent} from './my-routes/route/route.component';
 import {NewRouteDialogComponent} from './my-routes/new-route-dialog/new-route-dialog.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import {DashboardComponent} from './dashboard/dashboard.component';
 import {AdComponent} from './dashboard/ad/ad.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
+import {ShowVolunteerCredentialsComponent} from './my-requests/show-volunteer-credentials/show-volunteer-credentials.component';
+import {AppRoutingModule, routingComponent} from './app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -33,14 +34,16 @@ import {MatSelectModule} from '@angular/material/select';
     LoginComponent,
     HeaderComponent,
     RegistrationComponent,
-    MyRequestsComponent,
+    //   MyRequestsComponent,
     MyRoutesComponent,
     RequestComponent,
     NewRequestDialogComponent,
     RouteComponent,
     NewRouteDialogComponent,
-    DashboardComponent,
-    AdComponent
+    // DashboardComponent,
+    AdComponent,
+    ShowVolunteerCredentialsComponent,
+    routingComponent
   ],
   imports: [
     BrowserModule,
@@ -57,9 +60,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    AppRoutingModule
   ],
-  providers: [ ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {

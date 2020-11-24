@@ -6,6 +6,11 @@ import {AdService} from '../services/ad.service';
 import {Ad} from '../dashboard/ad';
 import {UserService} from '../services/user.service';
 import {User} from '../registration/user';
+import {ShowVolunteerCredentialsComponent} from './show-volunteer-credentials/show-volunteer-credentials.component';
+
+export interface DialogData {
+  volunteer: User;
+}
 
 @Component({
   selector: 'app-my-requests',
@@ -27,12 +32,12 @@ export class MyRequestsComponent implements OnInit {
       this.ads = ads;
     });
     this.adService.routeDeleted.subscribe((isDeleted: boolean) => {
-      if (isDeleted){
+      if (isDeleted) {
         this.adService.getUserAds(this.userService.user._userId);
       }
     });
     this.adService.adAdded.subscribe((res: boolean) => {
-      if (res){
+      if (res) {
         this.adService.getUserAds(this.userService.user._userId);
       }
     });
@@ -62,7 +67,28 @@ export class MyRequestsComponent implements OnInit {
   }
 
   updateAdStatus({string: status, number: index}): void {
+    this.ads[index]._status = status;
     this.adService.onUpdateStatus(status, this.ads[index]._adId);
+  }
+
+  statusClicked(index: number): void {
+    if (this.ads[index]._status === 'MATCH_FOUND') {
+      console.log('a');
+      console.log('this.ads[index]._volunteerData.id= ' + (this.ads[index])._adId);
+      const dialogRef2 = this.dialog.open(ShowVolunteerCredentialsComponent, {
+        width: '400px',
+        height: '300px',
+        data: {
+          volunteer: this.ads[index]._volunteerData
+        }
+      });
+      //
+      // dialogRef2.afterClosed().subscribe((response) => {
+      //   if (response) {
+      //
+      //   }
+      // });
+    }
   }
 }
 

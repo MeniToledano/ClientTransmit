@@ -1,7 +1,18 @@
 import {UserData} from '../services/server-model/user-response.model';
 
 export class User {
-  constructor(){}
+  private static u: User;
+  private userId: string;
+  private userName: string;
+  private password: string;
+  private firstName: string;
+  private lastName: string;
+  private email: string;
+  private phone: string;
+
+  constructor() {
+  }
+
   get _userId(): string {
     return this.userId;
   }
@@ -57,16 +68,8 @@ export class User {
   set _phone(value: string) {
     this.phone = value;
   }
-  private static u: User;
-  private userId: string;
-  private userName: string;
-  private password: string;
-  private firstName: string;
-  private lastName: string;
-  private email: string;
-  private phone: string;
 
-  static plainToClass(userJson: UserData): User{
+  static plainToClass(userJson: UserData): User {
     this.u = new User();
     this.u._password = userJson.password;
     this.u._userId = userJson.userId;

@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AdService} from '../../services/ad.service';
 
 @Component({
   selector: 'app-request',
@@ -15,7 +14,8 @@ export class RequestComponent implements OnInit {
   @Input() description: string;
   @Input() index: number;
   @Output() delete: EventEmitter<number> = new EventEmitter<number>();
-  @Output() statusChange: EventEmitter<{string, number}> = new EventEmitter<{string, number}>();
+  @Output() statusChange: EventEmitter<{ string, number }> = new EventEmitter<{ string, number }>();
+  @Output() statusClicked: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {
   }
@@ -30,6 +30,10 @@ export class RequestComponent implements OnInit {
   onChangeStatus(status: string): void {
     this.status = status;
     this.statusChange.emit({string: status, number: this.index});
+  }
+
+  onClickStatus(): void {
+    this.statusClicked.emit(this.index);
   }
 }
 

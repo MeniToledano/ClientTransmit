@@ -4,13 +4,13 @@
   </div>
   <div *ngFor="let ad of ads; let i = index">
     <app-ad [date]="ad._adLastModifiedDate"
+            [description]="ad._description"
             [request]="ad._request"
             [status]="ad._status"
             [time]="ad._adLastModifiedTime"
+            [title]="ad._title"
             [userLastName]="ad._user._lastName"
             [userName]="ad._user._userName"
-            [description]="ad._description"
-            [title]="ad._title"
     ></app-ad>
     <br>
   </div>

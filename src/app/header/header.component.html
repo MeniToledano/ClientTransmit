@@ -3,22 +3,31 @@
     <button aria-label="Example icon-button with menu icon" class="example-icon" mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
-    <span (click)="onClickSpan()" id="span">OnTheGo</span>
+    <nav>
+      <span (click)="chosenPage=''" id="span" routerLink="/dashboard">OnTheGo</span>
+    </nav>
     <span class="example-spacer"></span>
-    <button (click)="onChoosingPage('myRequests')"
-            *ngIf="isUserLogged" [ngClass]="{chosen:chosenPage=='myRequests'}"
+
+    <button (click)="chosenPage='myRequests'"
+            *ngIf="isUserLogged"
+            [ngClass]="{chosen:chosenPage=='myRequests'}"
             class="mat-button"
+            routerLink="my-requests"
             style="position: absolute;
             left: 160px"
     >My Requests
     </button>
-    <button (click)="onChoosingPage('myRoutes')"
-            *ngIf="isUserLogged" [ngClass]="{chosen:chosenPage=='myRoutes'}"
+
+    <button (click)="chosenPage='myRoutes'"
+            *ngIf="isUserLogged"
+            [ngClass]="{chosen:chosenPage=='myRoutes'}"
             class="mat-button"
+            routerLink="my-routes"
             style="position: absolute;
             left: 260px"
     >My Routes
     </button>
+
     <button *ngIf="isUserLogged" class="mat-button">Hi {{userName}}!</button>
     <button aria-label="Example icon-button with heart icon" class="example-icon favorite-icon" mat-icon-button>
       <mat-icon>favorite</mat-icon>

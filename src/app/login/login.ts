@@ -1,4 +1,8 @@
 export class Login {
+  constructor(private userName: string,
+              private password: string) {
+  }
+
   get _userName(): string {
     return this.userName;
   }
@@ -13,10 +17,6 @@ export class Login {
 
   set _password(value: string) {
     this.password = value;
-  }
-
-  constructor(private userName: string,
-              private password: string) {
   }
 
 }

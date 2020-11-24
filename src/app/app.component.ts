@@ -1,19 +1,17 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent  implements OnInit {
   title = 'OnTheGo';
-  pageNumber = 1;
   userName: string;
-  userLoggedIn = false;
 
-  onLogIn(userName: string): void {
-    this.userName = userName;
-    this.pageNumber = 0;
-    this.userLoggedIn = true;
+  constructor() {
   }
+  ngOnInit(): void {
+  }
+
 }

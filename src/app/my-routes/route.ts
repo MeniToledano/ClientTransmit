@@ -1,14 +1,18 @@
 import {RouteData} from '../services/server-model/route-response.model';
 
 export class Route {
-  get _routeId(): string {
-    return this.routeId;
-  }
+  private static route: Route;
+  private static routes: Route[];
+
   constructor(private routeId: string,
               private fromLocation: string,
               private toLocation: string,
               private exitTime: string,
               private arrivalTime: string) {
+  }
+
+  get _routeId(): string {
+    return this.routeId;
   }
 
   get _fromLocation(): string {
@@ -26,8 +30,6 @@ export class Route {
   get _arrivalTime(): string {
     return this.arrivalTime;
   }
-  private static route: Route;
-  private static routes: Route[];
 
   static arrPlainToClass(routesJson: RouteData[]): Route[] {
     this.routes = [];

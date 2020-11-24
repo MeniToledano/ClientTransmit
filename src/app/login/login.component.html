@@ -9,12 +9,15 @@
   <p>
     <mat-form-field appearance="standard" style="min-width: 300px">
       <mat-label>Enter Password</mat-label>
-      <input matInput placeholder="Password" #PASSWORD>
+      <input #PASSWORD matInput placeholder="Password">
     </mat-form-field>
   </p>
   <div *ngIf="userNotFound" class="invalid">User name \ Password are not valid!</div>
   <div>
-    <button (click)="onClickLogin(USERNAME.value, PASSWORD.value)" color="primary" mat-raised-button style="margin-right: 10px">Login
+    <button (click)="onClickLogin(USERNAME.value, PASSWORD.value)"
+            color="primary"
+            mat-raised-button
+            style="margin-right: 10px">Login
     </button>
     <button (click)="onClickRegistration()" color="primary" mat-raised-button>Register</button>
   </div>

@@ -12,10 +12,12 @@
 .example-container .mat-form-field + .mat-form-field {
   margin-left: 8px;
 }
-.button{
+
+.button {
   margin: 10px;
 }
-.invalid{
+
+.invalid {
   color: red;
   font-size: 13px;
   font-weight: bold;

@@ -31,7 +31,7 @@ export class HttpReqService {
   }
 
   // on login
-  getUser(userCredentials: Login): Observable<User> { // this need to be replace with new API
+  getUser(userCredentials: Login): Observable<User> {
     this.tempUrlString = this.BASE_URL + '/user/login';
     return this.http.post<UserResponse>(this.tempUrlString, userCredentials).pipe(
       map((response: UserResponse) => {

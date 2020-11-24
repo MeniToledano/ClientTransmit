@@ -34,3 +34,8 @@
 .resolved {
   background-color: lightgreen;
 }
+
+.ticketMenu {
+  float: right;
+  display: inline-block;
+}

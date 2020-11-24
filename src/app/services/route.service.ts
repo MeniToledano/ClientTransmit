@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
 import {HttpReqService} from './http-req.service';
+
 import {Route} from '../my-routes/route';
 
 @Injectable({
@@ -8,8 +9,10 @@ import {Route} from '../my-routes/route';
 export class RouteService {
 
   @Output() userRoutes: EventEmitter<Route[]> = new EventEmitter<Route[]>();
+
   constructor(private httpReqService: HttpReqService) {
   }
+
   getUserRoutes(userId: string): void {
     this.httpReqService.getUserRoutes(userId).toPromise().then(
       (response: Route[]) => {
@@ -18,12 +21,13 @@ export class RouteService {
       (error) => {
         if (error.status === 404) {
           return 'not found';
-        }else {
+        } else {
           console.log(error);
           return 'error';
         }
       });
   }
+
   setUserRoutes(userId: string, routes: Route[]): void {
     this.httpReqService.setUserRoutes(userId, routes).toPromise().then(
       (response: Route[]) => {
@@ -32,7 +36,7 @@ export class RouteService {
       (error) => {
         if (error.status === 404) {
           return 'not found';
-        }else {
+        } else {
           console.log(error);
           return 'error';
         }
@@ -47,7 +51,7 @@ export class RouteService {
       (error) => {
         if (error.status === 404) {
           return 'not found';
-        }else {
+        } else {
           console.log(error);
           return 'error';
         }

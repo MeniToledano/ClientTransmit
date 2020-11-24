@@ -1,7 +1,7 @@
 <div class="item">
   <h5 class="requestTitle">{{title}}</h5>
   <div>
-    <button [matMenuTriggerFor]="menu" mat-icon-button style="float: right; display: inline-block">
+    <button [matMenuTriggerFor]="menu" class="ticketMenu" mat-icon-button>
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu" class="menu">
@@ -16,7 +16,8 @@
       </button>
     </mat-menu>
 
-    <mat-chip [ngClass]="{resolved:status=='RESOLVED'}" class="statusButton">{{status}}</mat-chip>
+    <mat-chip (click)="onClickStatus()" [ngClass]="{resolved:status=='RESOLVED'}"
+              class="statusButton">{{status}}</mat-chip>
   </div>
   <br><br>
   <p class="content">{{description}}</p>

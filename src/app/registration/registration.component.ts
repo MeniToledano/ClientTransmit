@@ -2,6 +2,9 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {User} from './user';
+import {Router} from '@angular/router';
+import {StorageManagerService} from '../services/storage-manager.service';
+import {Login} from '../login/login';
 
 @Component({
   selector: 'app-registration',
@@ -19,29 +22,38 @@ export class RegistrationComponent implements OnInit {
   lastNameForm = new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z]{2,30}$')]);
   userAlreadyExist = false;
   @Output() userName: EventEmitter<string> = new EventEmitter<string>();
-  constructor(public userService: UserService) { }
   user: User;
+
+  constructor(public userService: UserService,
+              private router: Router,
+              private storageManagerService: StorageManagerService) {
+  }
+
   ngOnInit(): void {
   }
-  getUserErrorMessage(): string{
+
+  getUserErrorMessage(): string {
     if (this.userNameForm.hasError('required')) {
       return 'You must enter a value';
     }
   }
+
   getEmailErrorMessage(): string {
     if (this.emailForm.hasError('required')) {
       return 'You must enter a value';
     }
     return this.emailForm.hasError('pattern') ? 'Not a valid email' : '';
   }
-  getPasswordErrorMessage(): string{
-    if (this.passwordForm.hasError('required')){
+
+  getPasswordErrorMessage(): string {
+    if (this.passwordForm.hasError('required')) {
       return 'You must enter a value';
     }
     return this.passwordForm.hasError('pattern') ? 'password length must be 8-20' : '';
   }
+
   onClickRegistration(): void {
-    if ( this.validateAll()) {
+    if (this.validateAll()) {
       this.user = new User();
       this.user._userName = this.userNameForm.value;
       this.user._password = this.passwordForm.value;
@@ -52,18 +64,20 @@ export class RegistrationComponent implements OnInit {
 
       this.userService.onRegistration(this.user).then(
         (response: string) => {
-          if (response === 'User name already exist'){
+          if (response === 'User name already exist') {
             this.userAlreadyExist = true;
           } else {
-            this.userName.emit(response);
+            this.storageManagerService.setData('credentials', JSON.stringify(new Login(this.user._userName, this.user._password)));
+            this.router.navigate(['dashboard']);
           }
         }
       );
     }
   }
-  validateAll(): boolean{
+
+  validateAll(): boolean {
     if (this.userNameForm.invalid || this.passwordForm.invalid || this.emailForm.invalid || this.phoneForm.invalid ||
-      this.firstNameForm.invalid || this.lastNameForm.invalid){
+      this.firstNameForm.invalid || this.lastNameForm.invalid) {
       this.userNameForm.markAllAsTouched();
       this.passwordForm.markAllAsTouched();
       this.emailForm.markAllAsTouched();
@@ -74,25 +88,28 @@ export class RegistrationComponent implements OnInit {
     }
     return true;
   }
+
   onClickCancel(): void {
-    this.pageNumber.emit(1);
+    this.router.navigate(['login']);
+
   }
 
-
   getPhoneErrorMessage(): string {
-    if (this.phoneForm.hasError('required')){
+    if (this.phoneForm.hasError('required')) {
       return 'You must enter a value';
     }
     return this.phoneForm.hasError('pattern') ? 'Israeli phone number only' : '';
   }
+
   getFirstNameErrorMessage(): string {
-    if (this.firstNameForm.hasError('required')){
+    if (this.firstNameForm.hasError('required')) {
       return 'You must enter a value';
     }
     return this.firstNameForm.hasError('pattern') ? 'characters only' : '';
   }
+
   getLastNameErrorMessage(): string {
-    if (this.lastNameForm.hasError('required')){
+    if (this.lastNameForm.hasError('required')) {
       return 'You must enter a value';
     }
     return this.lastNameForm.hasError('pattern') ? 'characters only' : '';

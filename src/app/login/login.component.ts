@@ -1,7 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
-import {User} from '../registration/user';
 import {Login} from './login';
+import {Router} from '@angular/router';
+import {StorageManagerService} from '../services/storage-manager.service';
 
 @Component({
   selector: 'app-login',
@@ -12,28 +13,32 @@ export class LoginComponent implements OnInit {
 
   login: Login;
   userNotFound = false;
-  @Output() clickRegistration: EventEmitter<number> = new EventEmitter<number>();
-  @Output() clickLogin: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private router: Router,
+              private storageManagerService: StorageManagerService) {
   }
 
   ngOnInit(): void {
+    // if (this.userService.getUser() !== undefined){
+    //   this.router.navigate(['dashboard']);
+    // }
   }
 
-
   onClickRegistration(): void {
-    this.clickRegistration.emit(2);
+    this.router.navigate(['registration']);
   }
 
   onClickLogin(userName: string, password: string): void {
     this.login = new Login(userName, password);
     this.userService.onLogIn(this.login).then(
       (response: string) => {
-        if (response === 'not found'){
+        if (response === 'not found') {
           this.userNotFound = true;
         } else {
-          this.clickLogin.emit(response);
+          this.storageManagerService.setData('credentials', JSON.stringify(this.login));
+          this.router.navigate(['dashboard']);
+
         }
       }
     );

@@ -1,8 +1,24 @@
 import {Request} from '../my-requests/request';
 import {User} from '../registration/user';
-import {AdData, AdsResponse} from '../services/server-model/ad-response.model';
+import {AdData} from '../services/server-model/ad-response.model';
 
 export class Ad {
+  private static ad: Ad;
+  private static ads: Ad[];
+  private adId: string;
+  private userId: string;
+  private status: string;
+  private title: string;
+  private description: string;
+  private route: Request;
+  private user: User;
+  private adLastModifiedTime: string;
+  private adLastModifiedDate: string;
+  private volunteerData: User;
+
+  constructor() {
+  }
+
   get _adId(): string {
     return this.adId;
   }
@@ -10,6 +26,7 @@ export class Ad {
   set _adId(value: string) {
     this.adId = value;
   }
+
   get _request(): Request {
     return this.route;
   }
@@ -41,6 +58,7 @@ export class Ad {
   set _adLastModifiedDate(value: string) {
     this.adLastModifiedDate = value;
   }
+
   get _userId(): string {
     return this.userId;
   }
@@ -56,33 +74,30 @@ export class Ad {
   set _status(value: string) {
     this.status = value;
   }
-  set _title(value: string) {
-    this.title = value;
-  }
+
   get _title(): string {
     return this.title;
+  }
+
+  set _title(value: string) {
+    this.title = value;
   }
 
   get _description(): string {
     return this.description;
   }
+
   set _description(value: string) {
     this.description = value;
   }
-  constructor() {
+
+  get _volunteerData(): User {
+    return this.volunteerData;
   }
-  private static ad: Ad;
-  private static ads: Ad[];
-  private adId: string;
-  private userId: string;
-  private status: string;
-  private title: string;
-  private description: string;
-  private route: Request;
-  private user: User;
-  private adLastModifiedTime: string;
-  private adLastModifiedDate: string;
-  private volunteerData: User;
+
+  set _volunteerData(value: User) {
+    this.volunteerData = value;
+  }
 
   static plainToClass(ad: AdData): Ad {
     this.ad = null;
@@ -95,12 +110,15 @@ export class Ad {
     this.ad._status = ad.status;
     this.ad._request = Request.plainToText(ad.route);
     this.ad._adLastModifiedDate = ad.updateDateTime;
+    if (ad.volunteerData) {
+      this.ad._volunteerData = User.plainToClass(ad.volunteerData);
+    }
     return this.ad;
   }
 
-  static arrPlainToClass(adsJson: AdData[]): Ad[]{
-   this.ads = [];
-   adsJson.forEach(ad => this.ads.push(Ad.plainToClass(ad)));
-   return this.ads;
+  static arrPlainToClass(adsJson: AdData[]): Ad[] {
+    this.ads = [];
+    adsJson.forEach(ad => this.ads.push(Ad.plainToClass(ad)));
+    return this.ads;
   }
 }
