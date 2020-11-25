@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {DialogService} from '../../services/dialog.service';
 
 @Component({
   selector: 'app-route',
@@ -13,13 +14,16 @@ export class RouteComponent implements OnInit {
   @Input() index: number;
   @Output() delete: EventEmitter<number> = new EventEmitter();
 
-  constructor() {
+  constructor(public dialogService: DialogService) {
   }
 
   ngOnInit(): void {
   }
 
   onClickDelete(): void {
-    this.delete.emit(this.index);
+    this.dialogService.openModal('alert', 'are you sure?', () => {
+      this.delete.emit(this.index);
+    });
+
   }
 }

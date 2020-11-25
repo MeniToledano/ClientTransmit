@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {DialogService} from '../../services/dialog.service';
 
 @Component({
   selector: 'app-request',
@@ -17,14 +18,16 @@ export class RequestComponent implements OnInit {
   @Output() statusChange: EventEmitter<{ string, number }> = new EventEmitter<{ string, number }>();
   @Output() statusClicked: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor() {
+  constructor(public dialogService: DialogService) {
   }
 
   ngOnInit(): void {
   }
 
   onClickDelete(): void {
-    this.delete.emit(this.index);
+    this.dialogService.openModal('alert', 'are you sure?', () => {
+      this.delete.emit(this.index);
+    });
   }
 
   onChangeStatus(status: string): void {

@@ -9,6 +9,7 @@ import {Login} from '../login/login';
 export class UserService {
   user: User;
   @Output() userName: EventEmitter<string> = new EventEmitter<string>();
+  @Output() userUpdated: EventEmitter<User> = new EventEmitter<User>();
 
   constructor(private httpReqService: HttpReqService) {
   }
@@ -21,10 +22,13 @@ export class UserService {
         this.userName.emit(this.user._firstName);
         return this.user._firstName;
       },
-      (error) => {
-        if (error.status === 500) {
+      (error: Error) => {
+        console.log(error.stack);
+        if (error.name === 'UserAlreadyExistAuthenticationException') {
           console.log(error);
           return 'User name already exist';
+        } else {
+            alert('Server Error!');
         }
       }
     );
@@ -35,6 +39,7 @@ export class UserService {
       (response: User) => {
         this.user = response;
         this.userName.emit(this.user._firstName);
+        this.userUpdated.emit(this.user);
         return this.user._firstName;
       },
       (error) => {
@@ -46,12 +51,15 @@ export class UserService {
       });
   }
 
-  getUser(): string {
+  getUserFirstName(): string {
     if (this.user !== undefined) {
       return this.user._firstName;
     } else {
       return undefined;
     }
+  }
+  getUser(): User{
+    return this.user;
   }
   setUser(user: User): void{
     this.user = user;

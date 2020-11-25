@@ -27,18 +27,25 @@ export class MyRequestsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.adService.getUserAds(this.userService.user._userId);
+    // reloading the route
+    this.userService.userUpdated.subscribe((user: User) => {
+      this.adService.getUserAds(user._userId);
+    });
+    // switching between components
+    if (this.userService.getUser() !== undefined) {
+      this.adService.getUserAds(this.userService.getUser()._userId);
+    }
     this.adService.userAds.subscribe((ads: Ad[]) => {
       this.ads = ads;
     });
-    this.adService.routeDeleted.subscribe((isDeleted: boolean) => {
-      if (isDeleted) {
-        this.adService.getUserAds(this.userService.user._userId);
-      }
-    });
     this.adService.adAdded.subscribe((res: boolean) => {
       if (res) {
-        this.adService.getUserAds(this.userService.user._userId);
+        this.adService.getUserAds(this.userService.getUser()._userId);
+      }
+    });
+    this.adService.routeDeleted.subscribe((isDeleted: boolean) => {
+      if (isDeleted) {
+        this.adService.getUserAds(this.userService.getUser()._userId);
       }
     });
   }
@@ -82,12 +89,6 @@ export class MyRequestsComponent implements OnInit {
           volunteer: this.ads[index]._volunteerData
         }
       });
-      //
-      // dialogRef2.afterClosed().subscribe((response) => {
-      //   if (response) {
-      //
-      //   }
-      // });
     }
   }
 }

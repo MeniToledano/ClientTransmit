@@ -8,8 +8,7 @@
     </nav>
     <span class="example-spacer"></span>
 
-    <button (click)="chosenPage='myRequests'"
-            *ngIf="isUserLogged"
+    <button *ngIf="isUserLogged"
             [ngClass]="{chosen:chosenPage=='myRequests'}"
             class="mat-button"
             routerLink="my-requests"
@@ -18,8 +17,7 @@
     >My Requests
     </button>
 
-    <button (click)="chosenPage='myRoutes'"
-            *ngIf="isUserLogged"
+    <button *ngIf="isUserLogged"
             [ngClass]="{chosen:chosenPage=='myRoutes'}"
             class="mat-button"
             routerLink="my-routes"

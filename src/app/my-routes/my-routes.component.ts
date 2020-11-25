@@ -4,6 +4,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {Route} from './route';
 import {RouteService} from '../services/route.service';
 import {UserService} from '../services/user.service';
+import {User} from '../registration/user';
 
 @Component({
   selector: 'app-my-routes',
@@ -20,7 +21,12 @@ export class MyRoutesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.routeService.getUserRoutes(this.userService.user._userId);
+    this.userService.userUpdated.subscribe((user: User) => {
+      this.routeService.getUserRoutes(user._userId);
+    });
+    if (this.userService.user !== undefined){
+      this.routeService.getUserRoutes(this.userService.user._userId);
+    }
     this.routeService.userRoutes.subscribe((routes: Route[]) => {
       this.routes = routes;
     });

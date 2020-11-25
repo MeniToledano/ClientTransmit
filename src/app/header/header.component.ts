@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {UserService} from '../services/user.service';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {StorageManagerService} from '../services/storage-manager.service';
 
 @Component({
@@ -20,19 +20,34 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.onLogIn(JSON.parse(this.storageManagerService.getData('credentials'))).then((data: any) => {
-        if (this.userService.getUser() === undefined) {
+        if (this.userService.getUserFirstName() === undefined) {
           this.router.navigate(['login']);
         } else {
-          this.router.navigate(['dashboard']);
-          this.userName = this.userService.getUser();
+          if (this.router.url === '/login') {
+            this.router.navigate(['dashboard']);
+          } else {
+            this.router.navigate([this.router.url]);
+          }
+          this.userName = this.userService.getUserFirstName();
         }
       }
     );
-
     this.userService.userName.subscribe((userName: string) => {
       this.userName = userName;
       this.isUserLogged = true;
     });
+    this.router.events.subscribe((data) => {
+      this.setChosenHeaderDesign();
+    });
+  }
+
+  private setChosenHeaderDesign(): void {
+    const page = this.router.url;
+    if (page.toString().toLowerCase().includes('my-routes')) {
+        this.chosenPage = 'myRoutes';
+    }else  if (page.toString().toLowerCase().includes('my-requests')) {
+      this.chosenPage = 'myRequests';
+    }
   }
 
 }
