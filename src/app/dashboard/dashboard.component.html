@@ -1,4 +1,7 @@
-<div class="body">
+<div *ngIf="showLoader" class="body">
+  <app-loader></app-loader>
+</div>
+<div *ngIf="!showLoader" class="body">
   <div>
     <p class="label">Dashboard:</p>
   </div>

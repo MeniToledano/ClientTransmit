@@ -1,11 +1,14 @@
-<div class="body">
+<div *ngIf="showLoader" class="body">
+  <app-loader></app-loader>
+</div>
+<div *ngIf="!showLoader" class="body">
   <div>
     <div class="left">
       <p>My Routes:</p>
       <p>Editing a route is not possible, you can either remove or add a route.
       </p>
     </div>
-    <button (click)="openDialog()" class="right" color="primary" mat-raised-button>add new route</button>
+    <button (click)="onClickAddRoute()" class="right" color="primary" mat-raised-button>add new route</button>
   </div>
   <br><br><br><br>
   <div *ngFor="let route of routes; let i = index">

@@ -7,6 +7,7 @@ import {Ad} from '../dashboard/ad';
 import {UserService} from '../services/user.service';
 import {User} from '../registration/user';
 import {ShowVolunteerCredentialsComponent} from './show-volunteer-credentials/show-volunteer-credentials.component';
+import {Router, ActivatedRoute} from '@angular/router';
 
 export interface DialogData {
   volunteer: User;
@@ -20,15 +21,26 @@ export interface DialogData {
 export class MyRequestsComponent implements OnInit {
   ads: Ad[] = [];
   ad: Ad;
+  showLoader = true;
 
   constructor(public dialog: MatDialog,
               private adService: AdService,
-              private userService: UserService) {
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    // reloading the route
+    // sets loader until data been fetched
+    this.setLoader();
+
+    // reload dialog
+    if (this.router.url === '/my-requests/add-request'){
+      this.openDialog();
+    }
+
+    // reloading the routes
     this.userService.userUpdated.subscribe((user: User) => {
+      this.showLoader = false;
       this.adService.getUserAds(user._userId);
     });
     // switching between components
@@ -51,9 +63,13 @@ export class MyRequestsComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(NewRequestDialogComponent, {});
 
+    const dialogRef = this.dialog.open(NewRequestDialogComponent, {});
     dialogRef.afterClosed().subscribe((response) => {
+
+      if (this.router.url === '/my-requests/add-request'){
+        location.href = '/my-requests';
+      }
       if (response) {
         this.ad = new Ad();
         this.ad._request = new Request(null, response.to, response.from, null, null);
@@ -89,6 +105,21 @@ export class MyRequestsComponent implements OnInit {
           volunteer: this.ads[index]._volunteerData
         }
       });
+    }
+  }
+
+  private setLoader(): void {
+    setTimeout(() => {
+      this.showLoader = false;
+    }, 1000);
+  }
+
+  onClickAddRequest(): void {
+    // only navigate when the prev url is /home/my-requests
+    if (this.router.url === '/my-requests'){
+      location.href = '/my-requests/add-request';
+    }else{
+      this.openDialog();
     }
   }
 }

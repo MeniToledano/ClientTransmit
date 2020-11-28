@@ -5,6 +5,7 @@ import {MyRequestsComponent} from './my-requests/my-requests.component';
 import {MyRoutesComponent} from './my-routes/my-routes.component';
 import {LoginComponent} from './login/login.component';
 import {RegistrationComponent} from './registration/registration.component';
+import {RequestComponent} from './my-requests/request/request.component';
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
@@ -12,6 +13,8 @@ const routes: Routes = [
   {path: 'my-routes', component: MyRoutesComponent},
   {path: 'login', component: LoginComponent},
   {path: 'registration', component: RegistrationComponent},
+  {path: 'my-requests/add-request', component: MyRequestsComponent},
+  {path: 'my-routes/add-route', component: MyRoutesComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'},
 ];
 

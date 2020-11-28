@@ -29,6 +29,7 @@ import {AppRoutingModule, routingComponent} from './app-routing.module';
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { DialogRequestComponent } from './my-requests/request/dialog-request/dialog-request.component';
 import { DialogRouteComponent } from './my-routes/route/dialog-route/dialog-route.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { DialogRouteComponent } from './my-routes/route/dialog-route/dialog-rout
     routingComponent,
     AlertDialogComponent,
     DialogRequestComponent,
-    DialogRouteComponent
+    DialogRouteComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

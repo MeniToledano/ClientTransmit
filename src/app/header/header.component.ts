@@ -47,6 +47,8 @@ export class HeaderComponent implements OnInit {
         this.chosenPage = 'myRoutes';
     }else  if (page.toString().toLowerCase().includes('my-requests')) {
       this.chosenPage = 'myRequests';
+    }else{
+      this.chosenPage = '';
     }
   }
 
