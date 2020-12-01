@@ -10,6 +10,7 @@ export class AdService {
   ads: Ad[] = [];
   @Output() userAds: EventEmitter<Ad[]> = new EventEmitter<Ad[]>();
   @Output() allAds: EventEmitter<Ad[]> = new EventEmitter<Ad[]>();
+  @Output() pendingAds: EventEmitter<Ad[]> = new EventEmitter<Ad[]>();
   @Output() routeDeleted: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() adAdded: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -46,6 +47,21 @@ export class AdService {
       });
   }
 
+  getAllAdsByStatus(status: string): void {
+    this.httpReqService.getAdsByStatus(status).toPromise().then(
+      (response: Ad[]) => {
+        this.pendingAds.emit(response);
+      },
+      (error) => {
+        if (error.status === 404) {
+          return 'not found';
+        } else {
+          console.log(error);
+          return 'error';
+        }
+      });
+  }
+
   getAllAds(): void {
     this.httpReqService.getAds().toPromise().then(
       (response: Ad[]) => {
@@ -60,6 +76,7 @@ export class AdService {
         }
       });
   }
+
 
   deleteAd(userId: string, adId: string): void {
     this.httpReqService.deleteAd(userId, adId).toPromise().then(

@@ -30,6 +30,7 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 import { DialogRequestComponent } from './my-requests/request/dialog-request/dialog-request.component';
 import { DialogRouteComponent } from './my-routes/route/dialog-route/dialog-route.component';
 import { LoaderComponent } from './loader/loader.component';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { LoaderComponent } from './loader/loader.component';
     AlertDialogComponent,
     DialogRequestComponent,
     DialogRouteComponent,
-    LoaderComponent
+    LoaderComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,

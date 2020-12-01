@@ -19,8 +19,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.setLoader();
-    this.adService.getAllAds();
-    this.adService.allAds.subscribe((data: Ad[]) => {
+    this.adService.getAllAdsByStatus('PENDING');
+    this.adService.pendingAds.subscribe((data: Ad[]) => {
       // this.showLoader = false;
       this.ads = data;
     });

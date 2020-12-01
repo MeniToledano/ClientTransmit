@@ -52,4 +52,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  onClickFirstName(): void {
+    this.router.navigate(['user-info']);
+  }
 }

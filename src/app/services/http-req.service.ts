@@ -85,6 +85,24 @@ export class HttpReqService {
     );
   }
 
+  // get all ads with status 'PENDING'
+  getAdsByStatus(status: string): Observable<Ad[]> {
+    this.tempUrlString = this.BASE_URL + '/ads/' + status;
+    return this.http.get<AdsResponse>(this.tempUrlString).pipe(
+      map((response: AdsResponse) => {
+        if (response === undefined) {
+          console.log('Get User Ads response is undefined');
+          return [];
+        }
+        console.log(response);
+        if (response.ads.length > 0) {
+          return Ad.arrPlainToClass(response.ads);
+        }
+        return [];
+      })
+    );
+  }
+
   // get user routes
   getUserRoutes(userId: string): Observable<Route[]> {
     this.tempUrlString = this.BASE_URL + '/user/' + userId + '/routes';
@@ -161,5 +179,7 @@ export class HttpReqService {
       })
     );
   }
+
+
 }
 

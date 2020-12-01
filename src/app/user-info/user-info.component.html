@@ -1,0 +1,36 @@
+<div class="body">
+  <div *ngIf="showLoader">
+    <app-loader></app-loader>
+  </div>
+  <div *ngIf="!showLoader">
+    <div class="left">
+      <div class="row">
+        <div class="header">
+          My info
+        </div>
+      </div>
+      <div class="row">
+        <label class="label">First Name: </label>
+        {{user._firstName}}
+      </div>
+      <div class="row">
+        <label class="label">Last Name: </label>
+        {{user._lastName}}
+      </div>
+      <div class="row">
+        <label class="label">Email: </label>
+        {{user._email}}
+      </div>
+      <div class="row">
+        <label class="label">Phone number: </label>
+        {{user._phone}}
+      </div>
+      <div class="row">
+        <button color="primary"
+                mat-raised-button
+        (click)="onClickLogOut()">Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
