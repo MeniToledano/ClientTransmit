@@ -66,7 +66,9 @@ export class RegistrationComponent implements OnInit {
         (response: string) => {
           if (response === 'User name already exist') {
             this.userAlreadyExist = true;
-          } else {
+          } else if (response === 'somethingWentWrong') {
+            this.router.navigate(['login']);
+          }else {
             this.storageManagerService.setData('credentials', JSON.stringify(new Login(this.user._userName, this.user._password)));
             this.router.navigate(['dashboard']);
           }

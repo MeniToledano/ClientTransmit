@@ -1,6 +1,6 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
 import {StorageManagerService} from '../services/storage-manager.service';
 
 @Component({
@@ -19,22 +19,28 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.onLogIn(JSON.parse(this.storageManagerService.getData('credentials'))).then((data: any) => {
-        if (this.userService.getUserFirstName() === undefined) {
-          this.router.navigate(['login']);
-        } else {
-          if (this.router.url === '/login') {
-            this.router.navigate(['dashboard']);
-          } else {
-            this.router.navigate([this.router.url]);
-          }
-          this.userName = this.userService.getUserFirstName();
-        }
-      }
-    );
+    // this.userService.onLogIn(JSON.parse(this.storageManagerService.getData('credentials'))).then((data: any) => {
+    //     if (this.userService.getUserFirstName() === undefined) {
+    //       this.router.navigate(['login']);
+    //     } else {
+    //       if (this.router.url === '/login') {
+    //         this.router.navigate(['dashboard']);
+    //       } else {
+    //         this.router.navigate([this.router.url]);
+    //       }
+    //       this.userName = this.userService.getUserFirstName();
+    //     }
+    //   }
+    // );
+
+
     this.userService.userName.subscribe((userName: string) => {
-      this.userName = userName;
-      this.isUserLogged = true;
+      if (userName !== null){
+        this.userName = userName;
+        this.isUserLogged = true;
+      } else {
+        this.isUserLogged = false;
+      }
     });
     this.router.events.subscribe((data) => {
       this.setChosenHeaderDesign();
@@ -44,15 +50,19 @@ export class HeaderComponent implements OnInit {
   private setChosenHeaderDesign(): void {
     const page = this.router.url;
     if (page.toString().toLowerCase().includes('my-routes')) {
-        this.chosenPage = 'myRoutes';
-    }else  if (page.toString().toLowerCase().includes('my-requests')) {
+      this.chosenPage = 'myRoutes';
+    } else if (page.toString().toLowerCase().includes('my-requests')) {
       this.chosenPage = 'myRequests';
-    }else{
+    } else {
       this.chosenPage = '';
     }
   }
 
   onClickFirstName(): void {
     this.router.navigate(['user-info']);
+  }
+
+  onClickLogin(): void {
+    this.router.navigate(['login']);
   }
 }

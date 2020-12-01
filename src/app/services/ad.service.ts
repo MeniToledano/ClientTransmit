@@ -11,7 +11,7 @@ export class AdService {
   @Output() userAds: EventEmitter<Ad[]> = new EventEmitter<Ad[]>();
   @Output() allAds: EventEmitter<Ad[]> = new EventEmitter<Ad[]>();
   @Output() pendingAds: EventEmitter<Ad[]> = new EventEmitter<Ad[]>();
-  @Output() routeDeleted: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() adDeleted: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() adAdded: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private httpReqService: HttpReqService,
@@ -82,7 +82,7 @@ export class AdService {
     this.httpReqService.deleteAd(userId, adId).toPromise().then(
       (response: boolean) => {
         if (response === true) {
-          this.routeDeleted.emit(true);
+          this.adDeleted.emit(true);
         }
       },
       (error) => {
@@ -93,7 +93,7 @@ export class AdService {
           console.log(error);
           console.log('error');
         }
-        this.routeDeleted.emit(false);
+        this.adDeleted.emit(false);
       });
   }
 

@@ -35,6 +35,6 @@ export class UserInfoComponent implements OnInit {
   onClickLogOut(): void {
     this.storageManagerService.deleteData('credentials');
     this.router.navigate(['login']);
-    location.reload();
+    this.userService.userName.emit(null);
   }
 }

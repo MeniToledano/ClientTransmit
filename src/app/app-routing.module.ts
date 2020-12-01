@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'my-requests/add-request', component: MyRequestsComponent},
   {path: 'my-routes/add-route', component: MyRoutesComponent},
   {path: 'user-info', component: UserInfoComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
 ];
 
 @NgModule({

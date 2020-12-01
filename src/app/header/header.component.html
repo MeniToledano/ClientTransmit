@@ -27,6 +27,7 @@
     </button>
 
     <button *ngIf="isUserLogged" class="mat-button" (click)="onClickFirstName()">Hi {{userName}}!</button>
+    <button *ngIf="!isUserLogged" class="mat-button" (click)="onClickLogin()">Login</button>
     <button aria-label="Example icon-button with heart icon" class="example-icon favorite-icon" mat-icon-button>
       <mat-icon>favorite</mat-icon>
     </button>

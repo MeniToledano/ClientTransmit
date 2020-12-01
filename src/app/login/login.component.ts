@@ -20,9 +20,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if (this.userService.getUser() !== undefined){
-    //   this.router.navigate(['dashboard']);
-    // }
   }
 
   onClickRegistration(): void {

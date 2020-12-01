@@ -43,7 +43,7 @@ export class MyRequestsComponent implements OnInit {
       this.showLoader = false;
       this.adService.getUserAds(user._userId);
     });
-    // switching between components
+    // switching between components // should consider move it to app module
     if (this.userService.getUser() !== undefined) {
       this.adService.getUserAds(this.userService.getUser()._userId);
     }
@@ -55,7 +55,7 @@ export class MyRequestsComponent implements OnInit {
         this.adService.getUserAds(this.userService.getUser()._userId);
       }
     });
-    this.adService.routeDeleted.subscribe((isDeleted: boolean) => {
+    this.adService.adDeleted.subscribe((isDeleted: boolean) => {
       if (isDeleted) {
         this.adService.getUserAds(this.userService.getUser()._userId);
       }

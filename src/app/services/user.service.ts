@@ -18,18 +18,17 @@ export class UserService {
     Promise<any> {
     return this.httpReqService.postUser(user).toPromise().then(
       (response: User) => {
-        this.user = response;
-        this.userName.emit(this.user._firstName);
-        return this.user._firstName;
+        if (response._userName != null) {
+          this.user = response;
+          this.userName.emit(this.user._firstName);
+          return this.user._firstName;
+        }
+        return 'User name already exist';
       },
       (error: Error) => {
         console.log(error.stack);
-        if (error.name === 'UserAlreadyExistAuthenticationException') {
-          console.log(error);
-          return 'User name already exist';
-        } else {
-            alert('Server Error!');
-        }
+        alert('Server Error!');
+        return 'somethingWentWrong';
       }
     );
   }
@@ -58,10 +57,12 @@ export class UserService {
       return undefined;
     }
   }
-  getUser(): User{
+
+  getUser(): User {
     return this.user;
   }
-  setUser(user: User): void{
+
+  setUser(user: User): void {
     this.user = user;
   }
 }
