@@ -20,6 +20,13 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userService.userError.subscribe((error: string) => {
+      if (error.toLowerCase() === 'user not found') {
+        this.userNotFound = true;
+      }else if (error.toLowerCase() === 'unknown error'){
+        window.alert('Error accord!');
+      }
+    });
   }
 
   onClickRegistration(): void {
@@ -28,16 +35,6 @@ export class LoginComponent implements OnInit {
 
   onClickLogin(userName: string, password: string): void {
     this.login = new Login(userName, password);
-    this.userService.onLogIn(this.login).then(
-      (response: string) => {
-        if (response === 'not found') {
-          this.userNotFound = true;
-        } else {
-          this.storageManagerService.setData('credentials', JSON.stringify(this.login));
-          this.router.navigate(['dashboard']);
-
-        }
-      }
-    );
+    this.userService.onLogIn(this.login);
   }
 }

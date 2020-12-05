@@ -19,12 +19,7 @@ export class RouteService {
         this.userRoutes.emit(response);
       },
       (error) => {
-        if (error.status === 404) {
-          return 'not found';
-        } else {
-          console.log(error);
-          return 'error';
-        }
+        this.handleError(error);
       });
   }
 
@@ -34,12 +29,7 @@ export class RouteService {
         this.userRoutes.emit(response);
       },
       (error) => {
-        if (error.status === 404) {
-          return 'not found';
-        } else {
-          console.log(error);
-          return 'error';
-        }
+        this.handleError(error);
       });
   }
 
@@ -49,12 +39,19 @@ export class RouteService {
         this.userRoutes.emit(response);
       },
       (error) => {
-        if (error.status === 404) {
-          return 'not found';
-        } else {
-          console.log(error);
-          return 'error';
-        }
+        this.handleError(error);
       });
+  }
+
+  handleError(error): void {
+    if (error != null) {
+      if (error.status === 404) {
+        console.log(error);
+        console.log('not found');
+      } else {
+        console.log(error);
+        console.log('error');
+      }
+    }
   }
 }

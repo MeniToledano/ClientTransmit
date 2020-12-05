@@ -67,9 +67,9 @@ export class MyRequestsComponent implements OnInit {
     const dialogRef = this.dialog.open(NewRequestDialogComponent, {});
     dialogRef.afterClosed().subscribe((response) => {
 
-      if (this.router.url === '/my-requests/add-request'){
-        location.href = '/my-requests';
-      }
+      // if (this.router.url === '/my-requests/add-request'){
+      //   location.href = '/my-requests';
+      // }
       if (response) {
         this.ad = new Ad();
         this.ad._request = new Request(null, response.to, response.from, null, null);

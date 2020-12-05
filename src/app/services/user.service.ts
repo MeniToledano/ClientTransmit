@@ -2,6 +2,8 @@ import {EventEmitter, Injectable, Output} from '@angular/core';
 import {User} from '../registration/user';
 import {HttpReqService} from './http-req.service';
 import {Login} from '../login/login';
+import {StorageManagerService} from './storage-manager.service';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,60 +12,69 @@ export class UserService {
   user: User;
   @Output() userName: EventEmitter<string> = new EventEmitter<string>();
   @Output() userUpdated: EventEmitter<User> = new EventEmitter<User>();
+  @Output() userError: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private httpReqService: HttpReqService) {
+
+  constructor(private httpReqService: HttpReqService,
+              private storageManagerService: StorageManagerService,
+              private router: Router) {
   }
 
-  async onRegistration(user: User):
-    Promise<any> {
-    return this.httpReqService.postUser(user).toPromise().then(
+  onRegistration(user: User): void {
+    this.httpReqService.postUser(user).subscribe(
       (response: User) => {
-        if (response._userName != null) {
-          this.user = response;
-          this.userName.emit(this.user._firstName);
-          return this.user._firstName;
-        }
-        return 'User name already exist';
+        this.onUserLoggedIn(response);
+        this.router.navigate(['dashboard']);
       },
-      (error: Error) => {
-        console.log(error.stack);
-        alert('Server Error!');
-        return 'somethingWentWrong';
+      (error) => {
+        this.registrationFailed(error);
       }
     );
   }
 
-  async onLogIn(userCredentials: Login): Promise<any> {
-    return this.httpReqService.getUser(userCredentials).toPromise().then(
+  onLogIn(userCredentials: Login): void {
+    this.httpReqService.getUser(userCredentials).subscribe(
       (response: User) => {
-        this.user = response;
-        this.userName.emit(this.user._firstName);
-        this.userUpdated.emit(this.user);
-        return this.user._firstName;
+        this.onUserLoggedIn(response);
+
+        if (this.router.url === '/login') {
+          this.router.navigate(['dashboard']);
+        }
       },
       (error) => {
-        if (error.status === 404) {
-          return 'not found';
-        } else {
-          console.log(error);
-        }
+        this.loginFailed(error);
       });
-  }
-
-  getUserFirstName(): string {
-    if (this.user !== undefined) {
-      return this.user._firstName;
-    } else {
-      return undefined;
-    }
   }
 
   getUser(): User {
     return this.user;
   }
 
-  setUser(user: User): void {
-    this.user = user;
+  onUserLoggedIn(response: User): void {
+    this.user = response;
+    this.userName.emit(this.user._firstName);
+    this.userUpdated.emit(this.user);
+    this.storageManagerService.setData('credentials', JSON.stringify(new Login(this.user._userName, this.user._password)));
   }
+
+  registrationFailed(error): void {
+    console.log(error.error.message);
+    if (error.error.message.toLowerCase() === 'user already exist') {
+      this.userError.emit('User already exist');
+    } else {
+      this.userError.emit('unknown error');
+      console.log(error);
+    }
+  }
+
+  loginFailed(error): void {
+    if (error.status === 404) {
+      this.userError.emit('User Not Found!');
+    } else {
+      this.userError.emit('unknown error');
+      console.log(error);
+    }
+  }
+
 }
 

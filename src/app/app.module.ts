@@ -19,7 +19,7 @@ import {RouteComponent} from './my-routes/route/route.component';
 import {NewRouteDialogComponent} from './my-routes/new-route-dialog/new-route-dialog.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {AdComponent} from './dashboard/ad/ad.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
@@ -31,6 +31,7 @@ import { DialogRequestComponent } from './my-requests/request/dialog-request/dia
 import { DialogRouteComponent } from './my-routes/route/dialog-route/dialog-route.component';
 import { LoaderComponent } from './loader/loader.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import {HttpErrorInterceptor} from './http-error.interceptor';
 
 
 @NgModule({
@@ -73,7 +74,13 @@ import { UserInfoComponent } from './user-info/user-info.component';
     MatSelectModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

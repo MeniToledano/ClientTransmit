@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  implements OnInit {
+export class AppComponent implements OnInit {
   title = 'OnTheGo';
   userName: string;
 
@@ -16,15 +16,20 @@ export class AppComponent  implements OnInit {
               private  storageManagerService: StorageManagerService,
               private router: Router) {
   }
+
   ngOnInit(): void {
-    this.userService.onLogIn(JSON.parse(this.storageManagerService.getData('credentials'))).then((data: any) => {
-        if (this.userService.getUserFirstName() !== undefined) {
-          this.router.navigate([this.router.url]);
-        }else {
-          this.router.navigate(['dashboard']);
-        }
-      }
-    );
+    console.log('this.storageManagerService.getData(\'credentials\'): ' + this.storageManagerService.getData('credentials'));
+    if (this.storageManagerService.getData('credentials') !== null) {
+      this.userService.onLogIn(JSON.parse(this.storageManagerService.getData('credentials')));
+      //   .subscribe((data: any) => {
+      //     if (this.userService.getUserFirstName() !== undefined) {
+      //       this.router.navigate([this.router.url]);
+      //     } else {
+      //       this.router.navigate(['dashboard']);
+      //     }
+      //   }
+      // );
+    }
   }
 
 }

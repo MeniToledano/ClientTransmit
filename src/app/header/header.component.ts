@@ -14,26 +14,10 @@ export class HeaderComponent implements OnInit {
   chosenPage = '';
 
   constructor(private userService: UserService,
-              private router: Router,
-              private storageManagerService: StorageManagerService) {
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    // this.userService.onLogIn(JSON.parse(this.storageManagerService.getData('credentials'))).then((data: any) => {
-    //     if (this.userService.getUserFirstName() === undefined) {
-    //       this.router.navigate(['login']);
-    //     } else {
-    //       if (this.router.url === '/login') {
-    //         this.router.navigate(['dashboard']);
-    //       } else {
-    //         this.router.navigate([this.router.url]);
-    //       }
-    //       this.userName = this.userService.getUserFirstName();
-    //     }
-    //   }
-    // );
-
-
     this.userService.userName.subscribe((userName: string) => {
       if (userName !== null){
         this.userName = userName;

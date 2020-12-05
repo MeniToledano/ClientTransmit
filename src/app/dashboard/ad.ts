@@ -117,8 +117,9 @@ export class Ad {
   }
 
   static arrPlainToClass(adsJson: AdData[]): Ad[] {
-    this.ads = [];
-    adsJson.forEach(ad => this.ads.push(Ad.plainToClass(ad)));
+    // this.ads = [];
+    // adsJson.forEach(ad => this.ads.push(Ad.plainToClass(ad)));
+    this.ads = adsJson.map(ad => (Ad.plainToClass(ad)));
     return this.ads;
   }
 }

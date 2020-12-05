@@ -77,10 +77,7 @@ export class HttpReqService {
           return [];
         }
         console.log(response);
-        if (response.ads.length > 0) {
-          return Ad.arrPlainToClass(response.ads);
-        }
-        return [];
+        return Ad.arrPlainToClass(response.ads);
       })
     );
   }
@@ -95,10 +92,7 @@ export class HttpReqService {
           return [];
         }
         console.log(response);
-        if (response.ads.length > 0) {
-          return Ad.arrPlainToClass(response.ads);
-        }
-        return [];
+        return Ad.arrPlainToClass(response.ads);
       })
     );
   }

@@ -4,7 +4,6 @@ import {UserService} from '../services/user.service';
 import {User} from './user';
 import {Router} from '@angular/router';
 import {StorageManagerService} from '../services/storage-manager.service';
-import {Login} from '../login/login';
 
 @Component({
   selector: 'app-registration',
@@ -25,31 +24,18 @@ export class RegistrationComponent implements OnInit {
   user: User;
 
   constructor(public userService: UserService,
-              private router: Router,
-              private storageManagerService: StorageManagerService) {
+              private router: Router) {
   }
 
   ngOnInit(): void {
-  }
-
-  getUserErrorMessage(): string {
-    if (this.userNameForm.hasError('required')) {
-      return 'You must enter a value';
-    }
-  }
-
-  getEmailErrorMessage(): string {
-    if (this.emailForm.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.emailForm.hasError('pattern') ? 'Not a valid email' : '';
-  }
-
-  getPasswordErrorMessage(): string {
-    if (this.passwordForm.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.passwordForm.hasError('pattern') ? 'password length must be 8-20' : '';
+    this.userService.userError.subscribe((error: string) => {
+      if (error.toLowerCase() === 'User name already exist') {
+        this.userAlreadyExist = true;
+      } else if (error.toLowerCase() === 'unknown error') {
+        this.router.navigate(['login']);
+        window.alert('Error accord!');
+      }
+    });
   }
 
   onClickRegistration(): void {
@@ -62,18 +48,7 @@ export class RegistrationComponent implements OnInit {
       this.user._email = this.emailForm.value;
       this.user._phone = this.phoneForm.value;
 
-      this.userService.onRegistration(this.user).then(
-        (response: string) => {
-          if (response === 'User name already exist') {
-            this.userAlreadyExist = true;
-          } else if (response === 'somethingWentWrong') {
-            this.router.navigate(['login']);
-          }else {
-            this.storageManagerService.setData('credentials', JSON.stringify(new Login(this.user._userName, this.user._password)));
-            this.router.navigate(['dashboard']);
-          }
-        }
-      );
+      this.userService.onRegistration(this.user);
     }
   }
 
@@ -91,10 +66,7 @@ export class RegistrationComponent implements OnInit {
     return true;
   }
 
-  onClickCancel(): void {
-    this.router.navigate(['login']);
-
-  }
+  onClickCancel(): void {this.router.navigate(['login']);}
 
   getPhoneErrorMessage(): string {
     if (this.phoneForm.hasError('required')) {
@@ -115,5 +87,25 @@ export class RegistrationComponent implements OnInit {
       return 'You must enter a value';
     }
     return this.lastNameForm.hasError('pattern') ? 'characters only' : '';
+  }
+
+  getUserErrorMessage(): string {
+    if (this.userNameForm.hasError('required')) {
+      return 'You must enter a value';
+    }
+  }
+
+  getEmailErrorMessage(): string {
+    if (this.emailForm.hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.emailForm.hasError('pattern') ? 'Not a valid email' : '';
+  }
+
+  getPasswordErrorMessage(): string {
+    if (this.passwordForm.hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.passwordForm.hasError('pattern') ? 'password length must be 8-20' : '';
   }
 }
