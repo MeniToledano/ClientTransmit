@@ -31,7 +31,7 @@ import { DialogRequestComponent } from './my-requests/request/dialog-request/dia
 import { DialogRouteComponent } from './my-routes/route/dialog-route/dialog-route.component';
 import { LoaderComponent } from './loader/loader.component';
 import { UserInfoComponent } from './user-info/user-info.component';
-import {HttpErrorInterceptor} from './http-error.interceptor';
+import {HttpErrorInterceptor} from './interceptor/http-error.interceptor';
 
 
 @NgModule({
@@ -40,13 +40,11 @@ import {HttpErrorInterceptor} from './http-error.interceptor';
     LoginComponent,
     HeaderComponent,
     RegistrationComponent,
-    //   MyRequestsComponent,
     MyRoutesComponent,
     RequestComponent,
     NewRequestDialogComponent,
     RouteComponent,
     NewRouteDialogComponent,
-    // DashboardComponent,
     AdComponent,
     ShowVolunteerCredentialsComponent,
     routingComponent,

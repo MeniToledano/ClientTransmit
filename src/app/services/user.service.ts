@@ -69,7 +69,7 @@ export class UserService {
 
   loginFailed(error): void {
     if (error.status === 404) {
-      this.userError.emit('User Not Found!');
+      this.userError.emit('user not found');
     } else {
       this.userError.emit('unknown error');
       console.log(error);

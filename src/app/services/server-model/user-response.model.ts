@@ -6,6 +6,7 @@ export interface UserData {
   lastName: string;
   email: string;
   phone: string;
+  roles: Array<string>;
 }
 
 export interface UserResponse {

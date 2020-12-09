@@ -4,7 +4,7 @@ import {User} from '../registration/user';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Ad} from '../dashboard/ad';
-import {UserResponse} from './server-model/user-response.model';
+import {UserData, UserResponse} from './server-model/user-response.model';
 import {AdResponse, AdsResponse} from './server-model/ad-response.model';
 import {RouteResponse} from './server-model/route-response.model';
 import {Route} from '../my-routes/route';
@@ -22,10 +22,11 @@ export class HttpReqService {
 
   // on registration
   postUser(user: User): Observable<User> {
-    this.tempUrlString = this.BASE_URL + '/user';
-    return this.http.post<UserResponse>(this.tempUrlString, user).pipe(
+    // this.tempUrlString = this.BASE_URL + '/user';
+    this.tempUrlString = this.BASE_URL + '/api/auth/signup'; // Added
+    return this.http.post<UserData>(this.tempUrlString, user).pipe(
       map((response) => {
-        return User.plainToClass(response.user);
+        return User.plainToClass(response);
       })
     );
   }

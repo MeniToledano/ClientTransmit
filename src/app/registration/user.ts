@@ -9,8 +9,11 @@ export class User {
   private lastName: string;
   private email: string;
   private phone: string;
+  private roles: Array<string>;
 
   constructor() {
+    this.roles = new Array<string>();
+    this.roles.push('ROLE_USER');
   }
 
   get _userId(): string {
@@ -78,6 +81,7 @@ export class User {
     this.u._userName = userJson.userName;
     this.u._phone = userJson.phone;
     this.u._firstName = userJson.firstName;
+    this.u.roles = userJson.roles;
     return this.u;
   }
 
