@@ -1,5 +1,5 @@
 # OnTheGo - Client
-This is the server repo, view here the client repo:
+This is the client repo, view here the server repo:
 https://github.com/MeniToledano/ServerTransmit
 
 A Web application which connects volunteers deliver packages on their regular routes for those without the means to do so. For example, if you need assistance transfering a used fridge from Tel Aviv to Haifa, you might find a person who already drives daily on this route, and can assist with this task.
