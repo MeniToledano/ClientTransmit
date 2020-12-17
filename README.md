@@ -51,20 +51,29 @@ http://localhost:4200/
 
 
 # Screen shots
-### Login Page
+
+-Login Page
 <img width="470" alt="Login" src="https://user-images.githubusercontent.com/36308335/102397157-2de5e080-3fe6-11eb-920b-ade76e2e48dc.PNG">
-### Registration Page
+
+-Registration Page
 <img width="462" alt="Registration" src="https://user-images.githubusercontent.com/36308335/102397160-2f170d80-3fe6-11eb-8ceb-4950487d78ff.PNG">
-### Dashboard Page - here you can view help requests from everybody
+
+-Dashboard Page - here you can view help requests from everybody
 <img width="477" alt="Dashboard" src="https://user-images.githubusercontent.com/36308335/102397155-2de5e080-3fe6-11eb-8dd0-78a088266dfd.PNG">
-### User routes Page - user routes view
+
+-User routes Page - user routes view
 <img width="471" alt="Routes" src="https://user-images.githubusercontent.com/36308335/102397161-2f170d80-3fe6-11eb-89b0-dca0f9db6ba9.PNG">
-### Add new routes Page
+
+-Add new routes Page
 <img width="466" alt="AddNewRoute" src="https://user-images.githubusercontent.com/36308335/102397152-2d4d4a00-3fe6-11eb-89de-3a97bb9b68c6.PNG">
-### User requests Page - user requests view
+
+-User requests Page - user requests view
 <img width="478" alt="MyRequests" src="https://user-images.githubusercontent.com/36308335/102399304-22e07f80-3fe9-11eb-8f4e-37f606108938.PNG">
-### Add new request Page
+
+-Add new request Page
 <img width="464" alt="AddNewRequest" src="https://user-images.githubusercontent.com/36308335/102397147-2cb4b380-3fe6-11eb-8b08-80d87bf68a53.PNG">
-### User info & Logout
+
+-User info & Logout
 <img width="468" alt="UserInfo" src="https://user-images.githubusercontent.com/36308335/102397164-2fafa400-3fe6-11eb-9469-d6c564a85585.PNG">
+
 
