@@ -30,23 +30,23 @@ The current version includes:
 
 # Further work:
 
-4. Feel & looks (client) - make the app look better by using icons and more components from Material Design.
-5. Algorithm - make the algorithm more flexible: allow it to find a match that is not exactly what the user asked, but close enough (will require integration with external API such as Google Maps)
-6. Algorithm - keep a list of matches, so in case of rejection, the algorithm won’t pick the same match.
-7. Emails - send an email once a match has been made.
-8. Require match approval - a volunteer should be able to reject a match found by the algorithm. In this case, a new match will be found for the user who requested help.
-9. Manual matches - allow volunteers to use the dashboard to pick the user’s they can and want to assist.
-10. Private Messages - allow users to chat with each other regarding the match (or just offer their assistance)
-11. Dashboard - add filters to the list of messages (free text, by field, etc…)
-12. Dashboard - support client pagination (server already supports that)
-13. Giveaway portal - another portal allowing users to upload messages with items they wish to get rid of, and assist other users by giving them away.
+1. Feel & looks (client) - make the app look better by using icons and more components from Material Design.
+2. Algorithm - make the algorithm more flexible: allow it to find a match that is not exactly what the user asked, but close enough (will require integration with external API such as Google Maps)
+3. Algorithm - keep a list of matches, so in case of rejection, the algorithm won’t pick the same match.
+4. Emails - send an email once a match has been made.
+5. Require match approval - a volunteer should be able to reject a match found by the algorithm. In this case, a new match will be found for the user who requested help.
+6. Manual matches - allow volunteers to use the dashboard to pick the user’s they can and want to assist.
+7. Private Messages - allow users to chat with each other regarding the match (or just offer their assistance)
+8. Dashboard - add filters to the list of messages (free text, by field, etc…)
+9. Dashboard - support client pagination (server already supports that)
+10. Giveaway portal - another portal allowing users to upload messages with items they wish to get rid of, and assist other users by giving them away.
 
 # Installation and Setup Instructions
 In order to run the client code, first you have to run the server on your local machine (https://github.com/MeniToledano/ServerTransmit)
 
-Install by `npm install`
-Run by `ng serve`
-Visit the app at localhost: 
+- Install by `npm install`
+- Run by `ng serve`
+- Visit the app at localhost: 
 http://localhost:4200/
 
 
