@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     this.userService.userError.subscribe((error: string) => {
       if (error.toLowerCase() === 'user not found') {
         this.userNotFound = true;
-      }else if (error.toLowerCase() === 'unknown error'){
+      } else if (error.toLowerCase() === 'unknown error') {
         window.alert('Error accord!');
       }
     });

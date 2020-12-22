@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DialogRequestComponent } from './dialog-request.component';
+import {DialogRequestComponent} from './dialog-request.component';
 
 describe('DialogRequestComponent', () => {
   let component: DialogRequestComponent;
@@ -8,9 +8,9 @@ describe('DialogRequestComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogRequestComponent ]
+      declarations: [DialogRequestComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

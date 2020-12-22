@@ -7,7 +7,7 @@ import {Ad} from '../dashboard/ad';
 import {UserService} from '../services/user.service';
 import {User} from '../registration/user';
 import {ShowVolunteerCredentialsComponent} from './show-volunteer-credentials/show-volunteer-credentials.component';
-import {Router, ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
 
 export interface DialogData {
   volunteer: User;
@@ -34,7 +34,7 @@ export class MyRequestsComponent implements OnInit {
     this.setLoader();
 
     // reload dialog
-    if (this.router.url === '/my-requests/add-request'){
+    if (this.router.url === '/my-requests/add-request') {
       this.openDialog();
     }
 
@@ -67,9 +67,6 @@ export class MyRequestsComponent implements OnInit {
     const dialogRef = this.dialog.open(NewRequestDialogComponent, {});
     dialogRef.afterClosed().subscribe((response) => {
 
-      // if (this.router.url === '/my-requests/add-request'){
-      //   location.href = '/my-requests';
-      // }
       if (response) {
         this.ad = new Ad();
         this.ad._request = new Request(null, response.to, response.from, null, null);
@@ -108,19 +105,19 @@ export class MyRequestsComponent implements OnInit {
     }
   }
 
+  onClickAddRequest(): void {
+    // only navigate when the prev url is /home/my-requests
+    if (this.router.url === '/my-requests') {
+      location.href = '/my-requests/add-request';
+    } else {
+      this.openDialog();
+    }
+  }
+
   private setLoader(): void {
     setTimeout(() => {
       this.showLoader = false;
     }, 1000);
-  }
-
-  onClickAddRequest(): void {
-    // only navigate when the prev url is /home/my-requests
-    if (this.router.url === '/my-requests'){
-      location.href = '/my-requests/add-request';
-    }else{
-      this.openDialog();
-    }
   }
 }
 

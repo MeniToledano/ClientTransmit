@@ -147,7 +147,7 @@ export class HttpReqService {
   }
 
   deleteAd(userId: string, adId: string): Observable<boolean> {
-    this.tempUrlString = this.BASE_URL + '/user/' + userId + '/ads/' + adId;
+    this.tempUrlString = this.BASE_URL + '/ads/' + adId;
     return this.http.delete<Response>(this.tempUrlString).pipe(
       map((response: Response) => {
         if (response === undefined) {
@@ -162,7 +162,7 @@ export class HttpReqService {
   }
 
   updateAdStatus(status: string, adId: string): Observable<string> {
-    this.tempUrlString = this.BASE_URL + '/user/1/ads/' + adId + '/status';
+    this.tempUrlString = this.BASE_URL + '/ads/' + adId + '/status';
     const body = {status};
     return this.http.post<Response>(this.tempUrlString, body).pipe(
       map((response: Response) => {

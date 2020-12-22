@@ -1,7 +1,6 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
 import {Ad} from '../dashboard/ad';
 import {HttpReqService} from './http-req.service';
-import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'

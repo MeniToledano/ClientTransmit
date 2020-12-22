@@ -3,7 +3,6 @@ import {FormControl, Validators} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {User} from './user';
 import {Router} from '@angular/router';
-import {StorageManagerService} from '../services/storage-manager.service';
 
 @Component({
   selector: 'app-registration',
@@ -66,7 +65,9 @@ export class RegistrationComponent implements OnInit {
     return true;
   }
 
-  onClickCancel(): void {this.router.navigate(['login']);}
+  onClickCancel(): void {
+    this.router.navigate(['login']);
+  }
 
   getPhoneErrorMessage(): string {
     if (this.phoneForm.hasError('required')) {

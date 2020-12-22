@@ -1,11 +1,17 @@
 <div class="item">
-  <h5 class="requestTitle">{{title}}</h5>
+  <h5 class="title">{{title}}</h5>
 
-  <p class="custom-arrow"><i class="arrow right" matTooltip="Click to contact this user"></i></p>
+  <p class="custom-arrow">
+    <span class="material-icons" matTooltip="Click to contact this user">
+sms
+    </span>
+  </p>
+
+
   <mat-chip [ngClass]="{resolved:status ==='RESOLVED'}" class="statusButton">{{status}}</mat-chip>
 
   <br>
-  <h5 style="float: left">By {{userName}} {{userLastName}} at    {{date}}    {{time}}</h5>
+  <h5 class="sub-title">By {{userName}} {{userLastName}} at    {{date}}    {{time}}</h5>
   <br><br>
   <p class="content">{{description}}</p>
   <mat-chip-list>

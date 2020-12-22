@@ -1,19 +1,19 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageManagerService {
 
-  constructor() { }
+  constructor() {
+  }
 
 
   getData(key: string): string {
 
     if (window.localStorage) {
       return localStorage.getItem(key);
-    }
-    else {
+    } else {
       alert('local storage inaccessible!');
     }
   }
@@ -26,18 +26,18 @@ export class StorageManagerService {
     }
   }
 
-  deleteData(key: string): void{
+  deleteData(key: string): void {
     localStorage.removeItem(key);
 
   }
+
   initialize(key: string): string {
 
     if (window.localStorage) {
       if (localStorage.length > 0) {
         if (localStorage.getItem(key)) {
           return this.getData(key);
-        }
-        else {
+        } else {
           this.setData(key, '');
         }
       }

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DialogRouteComponent } from './dialog-route.component';
+import {DialogRouteComponent} from './dialog-route.component';
 
 describe('DialogRouteComponent', () => {
   let component: DialogRouteComponent;
@@ -8,9 +8,9 @@ describe('DialogRouteComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogRouteComponent ]
+      declarations: [DialogRouteComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

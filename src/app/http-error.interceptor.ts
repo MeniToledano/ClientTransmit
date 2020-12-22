@@ -1,7 +1,6 @@
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError, retry} from 'rxjs/operators';
-import Instance = WebAssembly.Instance;
 
 export class HttpErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -17,9 +16,9 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             // server-side error
             if (error.status === 404) {
               throw error;
-            }else{
+            } else {
               errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-              window.alert('Error accord!' + errorMessage);
+              window.alert('Error occur!' + errorMessage);
             }
           }
           return throwError(errorMessage);

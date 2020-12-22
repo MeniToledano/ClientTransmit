@@ -4,8 +4,10 @@
   background-color: whitesmoke;
   padding: 10px
 }
-
-.requestTitle {
+.sub-title{
+  float: left;
+}
+.title {
   margin-top: 5px;
   margin-bottom: 0;
   width: 450px;
@@ -48,7 +50,3 @@
   cursor: pointer;
 }
 
-.right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}

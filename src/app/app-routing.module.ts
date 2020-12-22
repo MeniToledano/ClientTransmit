@@ -5,7 +5,6 @@ import {MyRequestsComponent} from './my-requests/my-requests.component';
 import {MyRoutesComponent} from './my-routes/my-routes.component';
 import {LoginComponent} from './login/login.component';
 import {RegistrationComponent} from './registration/registration.component';
-import {RequestComponent} from './my-requests/request/request.component';
 import {UserInfoComponent} from './user-info/user-info.component';
 
 const routes: Routes = [

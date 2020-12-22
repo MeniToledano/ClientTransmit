@@ -60,12 +60,6 @@ export class MyRoutesComponent implements OnInit {
     this.routeService.deleteRoutes(this.routes.splice(index, 1)[0]._routeId);
   }
 
-  private setLoader(): void {
-    setTimeout(() => {
-      this.showLoader = false;
-    }, 1000);
-  }
-
   onClickAddRoute(): void {
     // only navigate when the prev url is /home/my-routes
     if (this.router.url === '/my-routes') {
@@ -73,5 +67,11 @@ export class MyRoutesComponent implements OnInit {
     } else {
       this.openDialog();
     }
+  }
+
+  private setLoader(): void {
+    setTimeout(() => {
+      this.showLoader = false;
+    }, 1000);
   }
 }

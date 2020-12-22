@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
-import {StorageManagerService} from '../services/storage-manager.service';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.userName.subscribe((userName: string) => {
-      if (userName !== null){
+      if (userName !== null) {
         this.userName = userName;
         this.isUserLogged = true;
       } else {
@@ -31,6 +30,14 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  onClickFirstName(): void {
+    this.router.navigate(['user-info']);
+  }
+
+  onClickLogin(): void {
+    this.router.navigate(['login']);
+  }
+
   private setChosenHeaderDesign(): void {
     const page = this.router.url;
     if (page.toString().toLowerCase().includes('my-routes')) {
@@ -40,13 +47,5 @@ export class HeaderComponent implements OnInit {
     } else {
       this.chosenPage = '';
     }
-  }
-
-  onClickFirstName(): void {
-    this.router.navigate(['user-info']);
-  }
-
-  onClickLogin(): void {
-    this.router.navigate(['login']);
   }
 }

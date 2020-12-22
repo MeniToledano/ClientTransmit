@@ -26,11 +26,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {ShowVolunteerCredentialsComponent} from './my-requests/show-volunteer-credentials/show-volunteer-credentials.component';
 import {AppRoutingModule, routingComponent} from './app-routing.module';
-import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
-import { DialogRequestComponent } from './my-requests/request/dialog-request/dialog-request.component';
-import { DialogRouteComponent } from './my-routes/route/dialog-route/dialog-route.component';
-import { LoaderComponent } from './loader/loader.component';
-import { UserInfoComponent } from './user-info/user-info.component';
+import {DialogRequestComponent} from './my-requests/request/dialog-request/dialog-request.component';
+import {DialogRouteComponent} from './my-routes/route/dialog-route/dialog-route.component';
+import {LoaderComponent} from './loader/loader.component';
+import {UserInfoComponent} from './user-info/user-info.component';
 import {HttpErrorInterceptor} from './http-error.interceptor';
 
 
@@ -50,7 +49,6 @@ import {HttpErrorInterceptor} from './http-error.interceptor';
     AdComponent,
     ShowVolunteerCredentialsComponent,
     routingComponent,
-    AlertDialogComponent,
     DialogRequestComponent,
     DialogRouteComponent,
     LoaderComponent,
