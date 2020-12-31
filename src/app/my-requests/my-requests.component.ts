@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Request} from './request';
 import {MatDialog} from '@angular/material/dialog';
 import {NewRequestDialogComponent} from './new-request-dialog/new-request-dialog.component';
@@ -8,6 +8,7 @@ import {UserService} from '../services/user.service';
 import {User} from '../registration/user';
 import {ShowVolunteerCredentialsComponent} from './show-volunteer-credentials/show-volunteer-credentials.component';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 export interface DialogData {
   volunteer: User;
@@ -18,10 +19,11 @@ export interface DialogData {
   templateUrl: './my-requests.component.html',
   styleUrls: ['./my-requests.component.css']
 })
-export class MyRequestsComponent implements OnInit {
+export class MyRequestsComponent implements OnInit, OnDestroy {
   ads: Ad[] = [];
   ad: Ad;
   showLoader = true;
+  subscription: Subscription[] = [];
 
   constructor(public dialog: MatDialog,
               private adService: AdService,
@@ -39,7 +41,7 @@ export class MyRequestsComponent implements OnInit {
     }
 
     // reloading the routes
-    this.userService.userUpdated.subscribe((user: User) => {
+    const sub1 = this.userService.userUpdated.subscribe((user: User) => {
       this.showLoader = false;
       this.adService.getUserAds(user._userId);
     });
@@ -47,19 +49,29 @@ export class MyRequestsComponent implements OnInit {
     if (this.userService.getUser() !== undefined) {
       this.adService.getUserAds(this.userService.getUser()._userId);
     }
-    this.adService.userAds.subscribe((ads: Ad[]) => {
+    const sub2 = this.adService.userAds.subscribe((ads: Ad[]) => {
       this.ads = ads;
     });
-    this.adService.adAdded.subscribe((res: boolean) => {
+    const sub3 = this.adService.adAdded.subscribe((res: boolean) => {
       if (res) {
         this.adService.getUserAds(this.userService.getUser()._userId);
       }
     });
-    this.adService.adDeleted.subscribe((isDeleted: boolean) => {
+    const sub4 = this.adService.adDeleted.subscribe((isDeleted: boolean) => {
       if (isDeleted) {
         this.adService.getUserAds(this.userService.getUser()._userId);
       }
     });
+
+    this.subscription.push(sub1);
+    this.subscription.push(sub2);
+    this.subscription.push(sub3);
+    this.subscription.push(sub4);
+
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.forEach((subscription) => subscription.unsubscribe());
   }
 
   openDialog(): void {

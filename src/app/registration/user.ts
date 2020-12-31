@@ -1,6 +1,7 @@
 import {UserData} from '../services/server-model/user-response.model';
 
 export class User {
+  // consider removing all getters and setters and make all elements public
   private static u: User;
   private userId: string;
   private userName: string;
@@ -70,15 +71,15 @@ export class User {
   }
 
   static plainToClass(userJson: UserData): User {
-    this.u = new User();
-    this.u._password = userJson.password;
-    this.u._userId = userJson.userId;
-    this.u._lastName = userJson.lastName;
-    this.u._email = userJson.email;
-    this.u._userName = userJson.userName;
-    this.u._phone = userJson.phone;
-    this.u._firstName = userJson.firstName;
-    return this.u;
+    const user = new User();
+    user._password = userJson.password;
+    user._userId = userJson.userId;
+    user._lastName = userJson.lastName;
+    user._email = userJson.email;
+    user._userName = userJson.userName;
+    user._phone = userJson.phone;
+    user._firstName = userJson.firstName;
+    return user;
   }
 
 }

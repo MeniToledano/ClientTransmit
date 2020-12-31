@@ -1,8 +1,6 @@
 import {RouteData} from '../services/server-model/route-response.model';
 
 export class Route {
-  private static route: Route;
-  private static routes: Route[];
 
   constructor(private routeId: string,
               private fromLocation: string,
@@ -32,20 +30,18 @@ export class Route {
   }
 
   static arrPlainToClass(routesJson: RouteData[]): Route[] {
-    this.routes = [];
-    routesJson.forEach(route => this.routes.push(Route.plainToClass(route)));
-    return this.routes;
+    const routes = [];
+    routesJson.forEach(route => routes.push(Route.plainToClass(route)));
+    return routes;
   }
 
   static plainToClass(routes: RouteData): Route {
-    this.route = null;
-    this.route = new Route(
+    return new Route(
       routes.routeId,
       routes.fromLocation,
       routes.toLocation,
       routes.exitTime,
       routes.arrivalTime
     );
-    return this.route;
   }
 }

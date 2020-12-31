@@ -3,8 +3,6 @@ import {User} from '../registration/user';
 import {AdData} from '../services/server-model/ad-response.model';
 
 export class Ad {
-  private static ad: Ad;
-  private static ads: Ad[];
   private adId: string;
   private userId: string;
   private status: string;
@@ -99,25 +97,23 @@ export class Ad {
     this.volunteerData = value;
   }
 
-  static plainToClass(ad: AdData): Ad {
-    this.ad = null;
-    this.ad = new Ad();
-    this.ad._adId = ad.adId; // here i have a problem?!!?
-    this.ad._user = User.plainToClass(ad.user);
-    this.ad._userId = ad.userId;
-    this.ad._title = ad.title;
-    this.ad._description = ad.description;
-    this.ad._status = ad.status;
-    this.ad._request = Request.plainToText(ad.route);
-    this.ad._adLastModifiedDate = ad.updateDateTime;
-    if (ad.volunteerData) {
-      this.ad._volunteerData = User.plainToClass(ad.volunteerData);
+  static plainToClass(adData: AdData): Ad {
+    const ad = new Ad();
+    ad._adId = adData.adId;
+    ad._user = User.plainToClass(adData.user);
+    ad._userId = adData.userId;
+    ad._title = adData.title;
+    ad._description = adData.description;
+    ad._status = adData.status;
+    ad._request = Request.plainToText(adData.route);
+    ad._adLastModifiedDate = adData.updateDateTime;
+    if (adData.volunteerData) {
+      ad._volunteerData = User.plainToClass(adData.volunteerData);
     }
-    return this.ad;
+    return ad;
   }
 
   static arrPlainToClass(adsJson: AdData[]): Ad[] {
-    this.ads = adsJson.map(ad => (Ad.plainToClass(ad)));
-    return this.ads;
+    return adsJson.map(ad => (Ad.plainToClass(ad)));
   }
 }

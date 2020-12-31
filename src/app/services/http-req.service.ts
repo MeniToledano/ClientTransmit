@@ -32,6 +32,7 @@ export class HttpReqService {
 
   // on login
   getUser(userCredentials: Login): Observable<User> {
+    // this.tempUrlString = this.BASE_URL + '/api/auth/signin';
     this.tempUrlString = this.BASE_URL + '/user/login';
     return this.http.post<UserResponse>(this.tempUrlString, userCredentials).pipe(
       map((response: UserResponse) => {

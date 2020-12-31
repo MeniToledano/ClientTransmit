@@ -1,15 +1,16 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {User} from './user';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, OnDestroy {
 
   @Output() pageNumber: EventEmitter<number> = new EventEmitter<number>();
   userNameForm = new FormControl('', [Validators.required]);
@@ -21,13 +22,15 @@ export class RegistrationComponent implements OnInit {
   userAlreadyExist = false;
   @Output() userName: EventEmitter<string> = new EventEmitter<string>();
   user: User;
+  subscription: Subscription[] = [];
 
   constructor(public userService: UserService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.userService.userError.subscribe((error: string) => {
+    // consider switch all string to eNums
+    const sub1 = this.userService.userError.subscribe((error: string) => {
       if (error.toLowerCase() === 'User name already exist') {
         this.userAlreadyExist = true;
       } else if (error.toLowerCase() === 'unknown error') {
@@ -35,6 +38,7 @@ export class RegistrationComponent implements OnInit {
         window.alert('Error accord!');
       }
     });
+    this.subscription.push(sub1);
   }
 
   onClickRegistration(): void {
@@ -108,5 +112,9 @@ export class RegistrationComponent implements OnInit {
       return 'You must enter a value';
     }
     return this.passwordForm.hasError('pattern') ? 'password length must be 8-20' : '';
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.forEach((subscription) => subscription.unsubscribe());
   }
 }
