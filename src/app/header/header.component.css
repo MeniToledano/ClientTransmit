@@ -11,3 +11,6 @@
 #span:hover {
   cursor: pointer;
 }
+.camelCase {
+  text-transform: capitalize;
+}

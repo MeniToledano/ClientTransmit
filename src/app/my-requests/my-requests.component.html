@@ -11,11 +11,11 @@
   <br><br>
   <div *ngFor="let ad of ads; let i = index">
     <!--    its better to define event like onDelete-->
-    <app-request (delete)="onClickDelete($event)"
-                 (statusChange)="updateAdStatus($event)"
+    <app-request (deletePerformed)="onClickDelete($event)"
+                 (statusChanged)="updateAdStatus($event)"
                  (statusClicked)="statusClicked($event)"
                  [description]="ad._description"
-                 [from]="ad._request._fromLocation"
+                 [from]="(ad._request._fromLocation)"
                  [index]=i
                  [status]="ad._status"
                  [title]="ad._title"

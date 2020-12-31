@@ -6,17 +6,14 @@
 sms
     </span>
   </p>
-
-
   <mat-chip [ngClass]="{resolved:status ==='RESOLVED'}" class="statusButton">{{status}}</mat-chip>
-
-  <br>
+  <br> <br>
   <h5 class="sub-title">By {{userName}} {{userLastName}} at    {{date}}    {{time}}</h5>
   <br><br>
   <p class="content">{{description}}</p>
   <mat-chip-list>
-    <mat-chip>{{request._fromLocation}}</mat-chip>
+    <mat-chip class="camelCase">{{request._fromLocation}}</mat-chip>
     <span>&#8594;</span>
-    <mat-chip>{{request._toLocation}}</mat-chip>
+    <mat-chip class="camelCase">{{request._toLocation}}</mat-chip>
   </mat-chip-list>
 </div>

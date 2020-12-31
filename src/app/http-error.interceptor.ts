@@ -16,6 +16,8 @@ export class HttpErrorInterceptor implements HttpInterceptor {
             // server-side error
             if (error.status === 404) {
               throw error;
+            } else if (error.status === 422){
+              errorMessage = 'user already exist';
             } else {
               errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
               window.alert('Error occur!' + errorMessage);

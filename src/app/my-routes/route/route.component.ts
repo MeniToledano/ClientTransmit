@@ -12,7 +12,7 @@ export class RouteComponent implements OnInit {
   @Input() exitTime: string;
   @Input() arrivalTime: string;
   @Input() index: number;
-  @Output() delete: EventEmitter<number> = new EventEmitter();
+  @Output() deletePerformed: EventEmitter<number> = new EventEmitter();
 
   constructor(public dialogService: DialogService) {
   }
@@ -22,7 +22,7 @@ export class RouteComponent implements OnInit {
 
   onClickDelete(): void {
     this.dialogService.openModal('alert', 'are you sure?', () => {
-      this.delete.emit(this.index);
+      this.deletePerformed.emit(this.index);
     });
 
   }

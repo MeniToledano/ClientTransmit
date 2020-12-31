@@ -39,3 +39,6 @@
   float: right;
   display: inline-block;
 }
+.camelCase {
+  text-transform: capitalize;
+}

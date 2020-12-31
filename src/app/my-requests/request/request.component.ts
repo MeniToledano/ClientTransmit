@@ -14,8 +14,8 @@ export class RequestComponent implements OnInit {
   @Input() status = 'PENDING';
   @Input() description: string;
   @Input() index: number;
-  @Output() delete: EventEmitter<number> = new EventEmitter<number>();
-  @Output() statusChange: EventEmitter<{ string, number }> = new EventEmitter<{ string, number }>();
+  @Output() deletePerformed: EventEmitter<number> = new EventEmitter<number>();
+  @Output() statusChanged: EventEmitter<{ string, number }> = new EventEmitter<{ string, number }>();
   @Output() statusClicked: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(public dialogService: DialogService) {
@@ -26,17 +26,18 @@ export class RequestComponent implements OnInit {
 
   onClickDelete(): void {
     this.dialogService.openModal('alert', 'are you sure?', () => {
-      this.delete.emit(this.index);
+      this.deletePerformed.emit(this.index);
     });
   }
 
   onChangeStatus(status: string): void {
     this.status = status;
-    this.statusChange.emit({string: status, number: this.index});
+    this.statusChanged.emit({string: status, number: this.index});
   }
 
   onClickStatus(): void {
     this.statusClicked.emit(this.index);
   }
+
 }
 

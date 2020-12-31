@@ -26,7 +26,7 @@
     >My Routes
     </button>
 
-    <button (click)="onClickFirstName()" *ngIf="isUserLogged" class="mat-button">Hi {{userName}}!</button>
+    <button (click)="onClickFirstName()" *ngIf="isUserLogged" class="mat-button camelCase">Hi {{userName}}!</button>
     <button (click)="onClickLogin()" *ngIf="!isUserLogged" class="mat-button">Login</button>
     <button aria-label="Example icon-button with heart icon" class="example-icon favorite-icon" mat-icon-button>
       <mat-icon>favorite</mat-icon>

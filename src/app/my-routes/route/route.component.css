@@ -24,3 +24,6 @@
   background-color: unset;
 }
 
+.camelCase {
+  text-transform: capitalize;
+}

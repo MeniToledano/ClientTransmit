@@ -1,10 +1,10 @@
 <div class="item">
   <mat-chip-list style="display: inline-block; float: left; margin-bottom: 2px">
-    <mat-chip>{{from}}</mat-chip>
+    <mat-chip class="camelCase">{{from}}</mat-chip>
     <span class="material-icons">
       east
     </span>
-    <mat-chip>{{to}}</mat-chip>
+    <mat-chip class="camelCase">{{to}}</mat-chip>
   </mat-chip-list>
   <button (click)="onClickDelete()" class="button" matTooltip="Click to delete this route">
       <span class="material-icons" matTooltip="Click to delete this route">

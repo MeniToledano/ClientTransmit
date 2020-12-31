@@ -23,3 +23,6 @@
   font-weight: bold;
   margin: 5px;
 }
+.camelCase {
+  text-transform: capitalize;
+}

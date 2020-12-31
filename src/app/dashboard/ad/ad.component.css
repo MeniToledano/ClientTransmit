@@ -50,3 +50,6 @@
   cursor: pointer;
 }
 
+.camelCase {
+  text-transform: capitalize;
+}

@@ -27,6 +27,7 @@ export class UserService {
         this.router.navigate(['dashboard']);
       },
       (error) => {
+        console.log('error: ' + error);
         this.registrationFailed(error);
       }
     );
@@ -58,9 +59,9 @@ export class UserService {
   }
 
   registrationFailed(error): void {
-    console.log(error.error.message);
-    if (error.error.message.toLowerCase() === 'user already exist') {
-      this.userError.emit('User already exist');
+
+    if (error.toLowerCase() === 'user already exist') {
+      this.userError.emit('user already exist');
     } else {
       this.userError.emit('unknown error');
       console.log(error);

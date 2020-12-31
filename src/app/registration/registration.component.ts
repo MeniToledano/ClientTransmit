@@ -31,7 +31,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // consider switch all string to eNums
     const sub1 = this.userService.userError.subscribe((error: string) => {
-      if (error.toLowerCase() === 'User name already exist') {
+      if (error.toLowerCase() === 'user already exist') {
         this.userAlreadyExist = true;
       } else if (error.toLowerCase() === 'unknown error') {
         this.router.navigate(['login']);
